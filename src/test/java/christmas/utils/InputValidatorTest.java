@@ -75,4 +75,13 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 값을 입력해주세요.");
     }
+
+    @DisplayName("입력값 Map 변환 테스트 - 중복된 데이터 - 오류")
+    @ValueSource(strings = {"시저샐러드-1,시저샐러드-2", "티본스테이크-1,티본스테이크-2,타파스-1"})
+    @ParameterizedTest
+    void convertInputToMapDuplicatedTest(String input) {
+        assertThatThrownBy(() -> inputValidator.convertInputToMenuOrder(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 중복되는 메뉴 주문이 존재합니다. 수량을 조정해주세요.");
+    }
 }
