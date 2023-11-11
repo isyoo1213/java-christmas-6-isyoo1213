@@ -5,6 +5,7 @@ import christmas.constants.ExceptionMessages;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,13 +41,16 @@ public class InputValidator {
     }
 
     private Map<String, Integer> castStringListToMap(List<String> menuOrders) {
-        Map<String, Integer> convertedMenuOrders = new HashMap<>();
+        Map<String, Integer> convertedMenuOrders = new ConcurrentHashMap<>();
         List<String[]> separatedMenuOrders = separateMenuAndAmount(menuOrders);
         for (String[] separatedMenuOrder : separatedMenuOrders) {
             if (separatedMenuOrder.length != 2 || isEmpty(separatedMenuOrder[0]) || isEmpty(separatedMenuOrder[1])) {
                 ExceptionMessages.EMPTY_INPUT.throwException();
             }
             convertedMenuOrders.put(separatedMenuOrder[0], Integer.parseInt(separatedMenuOrder[1]));
+        }
+        if (menuOrders.size() != convertedMenuOrders.size()) {
+            ExceptionMessages.DUPLICATED_MENU_ORDER.throwException();
         }
         return convertedMenuOrders;
     }
