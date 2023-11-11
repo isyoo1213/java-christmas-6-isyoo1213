@@ -2,6 +2,11 @@ package christmas.utils;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -49,5 +54,25 @@ public class InputValidatorTest {
         String testInput = "25";
         Integer expectedResult = 25;
         assertThat(inputValidator.convertInputToDate(testInput)).isEqualTo(expectedResult);
+    }
+
+    //ParameterizedTest의 결과값으로 map을 사용하는 방법 탐색하기
+    @DisplayName("입력값 Map 변환 테스트 - 정상 데이터 - 성공")
+    @Test
+    void convertInputToMapCorrectTest() {
+        String testInput = "시저샐러드-1,티본스테이크-2";
+        Map<String, Integer> expectedResult = new HashMap<>();
+        expectedResult.put("시저샐러드", 1);
+        expectedResult.put("티본스테이크", 2);
+        assertThat(inputValidator.convertInputToMenuOrder(testInput)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("입력값 Map 변환 테스트 - Empty 데이터 - 오류")
+    @ValueSource(strings = {"시저샐러드-,-2", "-1,티본스테이크-2", "-,-"})
+    @ParameterizedTest
+    void convertInputToMapEmptyTest(String input) {
+        assertThatThrownBy(() -> inputValidator.convertInputToMenuOrder(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 값을 입력해주세요.");
     }
 }
