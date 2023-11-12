@@ -14,18 +14,25 @@ public enum Menus {
     RED_WINE("레드와인", 60000, "음료"),
     CHAMPAGNE("샴페인", 25000, "음료");
 
-
-    private final String label;
+    private final String menuName;
     private final int price;
     private final String category;
 
-    Menus(String label, int price, String category) {
-        this.label = label;
+    Menus(String menuName, int price, String category) {
+        this.menuName = menuName;
         this.price = price;
         this.category = category;
     }
 
+    public static int calculateEachMenuPrice(Menus menu, Integer amount) {
+        return menu.price * amount;
+    }
+
     public boolean hasMenu(String menuName) {
-        return this.label.equals(menuName);
+        return this.menuName.equals(menuName);
+    }
+
+    public String category() {
+        return category;
     }
 }
