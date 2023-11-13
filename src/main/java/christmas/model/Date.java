@@ -26,4 +26,16 @@ public class Date {
     public int calculateDaysToXmas() {
         return CHRISTMAS_DATE - date;
     }
+
+    public boolean isWeekday() {
+        return Days.calculateDate(date).equals(Days.WEEKDAY);
+    }
+
+    public boolean isWeekend() {
+        return Days.calculateDate(date).equals(Days.WEEKEND);
+    }
+
+    public boolean isSpecialday() {
+        return Days.calculateDate(date).equals(Days.SPECIALDAY);
+    }
 }
