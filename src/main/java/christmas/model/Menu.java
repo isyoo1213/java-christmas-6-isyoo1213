@@ -15,7 +15,7 @@ public class Menu {
         validate(convertedOrderedMenus);
         Map<Menus, Integer> orderedMenus = new EnumMap<>(Menus.class);
         for (Map.Entry<String, Integer> convertedOrderedMenu : convertedOrderedMenus.entrySet()) {
-            Menus orderedMenu = Menus.valueOf(convertedOrderedMenu.getKey());
+            Menus orderedMenu = Menus.getMenusByName(convertedOrderedMenu.getKey());
             Integer orderedMenuAmount = convertedOrderedMenu.getValue();
             orderedMenus.put(orderedMenu, orderedMenuAmount);
         }
@@ -51,12 +51,7 @@ public class Menu {
     }
 
     private boolean isNonExistingMenu(String menuName) {
-        for (Menus menu : Menus.values()) {
-            if (menu.hasMenu(menuName)) {
-                return false;
-            }
-        }
-        return true;
+        return Menus.getMenusByName(menuName).equals(Menus.UNCATEGORIZED);
     }
 
     public int provideTotalPrice() {
