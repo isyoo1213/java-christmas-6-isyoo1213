@@ -45,7 +45,7 @@ public class InputValidatorTest {
         String testInput = "a";
         assertThatThrownBy(() -> inputValidator.convertInputToDate(testInput))
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessage("[ERROR] 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("입력값 날짜 변환 테스트 - 정상 데이터 - 성공")
@@ -73,7 +73,7 @@ public class InputValidatorTest {
     void convertInputToMapEmptyTest(String input) {
         assertThatThrownBy(() -> inputValidator.convertInputToMenuOrder(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 값을 입력해주세요.");
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("입력값 Map 변환 테스트 - 중복된 데이터 - 오류")
