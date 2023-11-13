@@ -1,5 +1,13 @@
 package christmas.constants;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum Menus {
     MUSHROOM_SOUP("양송이수프", 6000, "애피타이저"),
     TAPAS("타파스", 5500, "애피타이저"),
@@ -12,8 +20,12 @@ public enum Menus {
     ICECREAM("아이스크림", 5000, "디저트"),
     ZERO_COKE("제로콜라", 3000, "음료"),
     RED_WINE("레드와인", 60000, "음료"),
-    CHAMPAGNE("샴페인", 25000, "음료");
+    CHAMPAGNE("샴페인", 25000, "음료"),
+    UNCATEGORIZED("이름없음", 0, "미분류");
 
+    private static final Map<String, Menus> menuNames =
+            Collections.unmodifiableMap(Stream.of(values())
+                    .collect(Collectors.toMap(Menus::menuName, Function.identity())));
     private final String menuName;
     private final int price;
     private final String category;
@@ -22,6 +34,10 @@ public enum Menus {
         this.menuName = menuName;
         this.price = price;
         this.category = category;
+    }
+
+    public static Menus getMenusByName(String menuName) {
+        return Optional.ofNullable(menuNames.get(menuName)).orElse(UNCATEGORIZED);
     }
 
     public static int calculateEachMenuPrice(Menus menu, Integer amount) {
@@ -34,5 +50,9 @@ public enum Menus {
 
     public String category() {
         return category;
+    }
+
+    private String menuName() {
+        return menuName;
     }
 }
