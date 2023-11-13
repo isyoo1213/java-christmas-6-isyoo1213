@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.constants.Days;
 import christmas.constants.ExceptionMessages;
 
 import static christmas.constants.EventConstants.*;
@@ -16,5 +17,13 @@ public class Date {
         if (date <= ZERO || date >= END_DAY_OF_MONTH) {
             ExceptionMessages.WRONG_DAY_NUMBER_RANGE.throwException();
         }
+    }
+
+    public boolean isFirstToXmas() {
+        return date >= 1 && date <= 25;
+    }
+
+    public int calculateDaysToXmas() {
+        return CHRISTMAS_DATE - date;
     }
 }
