@@ -3,7 +3,9 @@ package christmas.model;
 import christmas.constants.ExceptionMessages;
 import christmas.constants.Menus;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class Menu {
@@ -55,5 +57,21 @@ public class Menu {
             }
         }
         return true;
+    }
+
+    public int provideTotalPrice() {
+        int totalPrice = 0;
+        for (Map.Entry<Menus, Integer> orderedMenu : orderedMenus.entrySet()) {
+            totalPrice += Menus.calculateEachMenuPrice(orderedMenu.getKey(), orderedMenu.getValue());
+        }
+        return totalPrice;
+    }
+
+    public List<String> provideMenuCategories() {
+        List<String> categories = new ArrayList<>();
+        for (Menus menus : orderedMenus.keySet()) {
+            categories.add(menus.category());
+        }
+        return categories;
     }
 }
