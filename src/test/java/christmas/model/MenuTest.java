@@ -1,6 +1,6 @@
 package christmas.model;
 
-import org.assertj.core.api.Assertions;
+import christmas.constants.Menus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,5 +41,21 @@ public class MenuTest {
         assertThatThrownBy(() -> new Menu(testOrderedMenus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 총 메뉴 주문 수량이 20개 이하여야 이벤트를 참여할 수 있습니다.");
+    }
+
+    @DisplayName("메뉴 총 주문 금액 반환 테스트 - 정상 데이터 - 성공")
+    @Test
+    void provideTotalPriceTest() {
+        Map<String, Integer> testOrderedMenus = new HashMap<>();
+        testOrderedMenus.put("타파스", 2);
+        testOrderedMenus.put("양송이수프", 1);
+        testOrderedMenus.put("티본스테이크", 3);
+        Menu testMenus = new Menu(testOrderedMenus);
+        int expectedResult = 0;
+        expectedResult += Menus.calculateEachMenuPrice(Menus.TAPAS, 2);
+        expectedResult += Menus.calculateEachMenuPrice(Menus.MUSHROOM_SOUP, 1);
+        expectedResult += Menus.calculateEachMenuPrice(Menus.TBONE_STEAK, 3);
+
+        assertThat(testMenus.provideTotalPrice()).isEqualTo(expectedResult);
     }
 }
