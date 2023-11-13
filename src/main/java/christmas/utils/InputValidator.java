@@ -45,7 +45,7 @@ public class InputValidator {
         List<String[]> separatedMenuOrders = separateMenuAndAmount(menuOrders);
         for (String[] separatedMenuOrder : separatedMenuOrders) {
             if (separatedMenuOrder.length != 2 || isEmpty(separatedMenuOrder[0]) || isEmpty(separatedMenuOrder[1])) {
-                ExceptionMessages.EMPTY_INPUT.throwException();
+                ExceptionMessages.NON_NUMERIC_AMOUNT_INPUT.throwException();
             }
             convertedMenuOrders.put(separatedMenuOrder[0], Integer.parseInt(separatedMenuOrder[1]));
         }
@@ -75,7 +75,7 @@ public class InputValidator {
         try {
             Integer.parseInt(preprocessedInput);
         } catch (NumberFormatException e) {
-            ExceptionMessages.NON_NUMERIC_INPUT.throwException();
+            ExceptionMessages.NON_NUMERIC_DATE_INPUT.throwException();
         }
     }
 
