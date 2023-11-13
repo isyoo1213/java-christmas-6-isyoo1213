@@ -1,6 +1,7 @@
 package christmas.constants;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -34,5 +35,13 @@ public class MenusTest {
             }
         }
         assertThat(testResult).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("메뉴/수량 가격 계산 테스트 - 정상 데이터 - 성공")
+    @Test
+    void calculateEachMenuPrice() {
+        int testAmount = 5;
+        int excpectedResult = 30000;
+        assertThat(Menus.calculateEachMenuPrice(Menus.MUSHROOM_SOUP, testAmount)).isEqualTo(excpectedResult);
     }
 }
