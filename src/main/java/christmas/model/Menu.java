@@ -75,9 +75,9 @@ public class Menu {
 
     public int provideDessertAmount() {
         int totalDessertAmount = 0;
-        for (Menus menus : orderedMenus.keySet()) {
-            if (menus.category().equals(BEVERAGE_CATEGORY_STRING)) {
-                totalDessertAmount += orderedMenus.get(menus);
+        for (Menus menu : orderedMenus.keySet()) {
+            if (menu.category().equals(DESSERT_CATEGORY_STRING)) {
+                totalDessertAmount += orderedMenus.get(menu);
             }
         }
         return totalDessertAmount;
