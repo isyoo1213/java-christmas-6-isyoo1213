@@ -30,8 +30,8 @@ public class Order {
         }
         for (Map.Entry<Events, Integer> eventResult : eventsResult.entrySet()) {
             String eventName = Events.provideEventName(eventResult.getKey());
-            String benefitAmount = new DecimalFormat("###,###").format(eventsResult.get(eventResult));
-            eventsResultInfo.add(eventName + EventConstants.COLONS_STRING+ " " + benefitAmount);
+            String benefitAmount = new DecimalFormat("###,###").format(eventsResult.get(eventResult.getKey()));
+            eventsResultInfo.add(eventName + EventConstants.COLONS_STRING+ " -" + benefitAmount + "원");
         }
         return eventsResultInfo;
     }
