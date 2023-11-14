@@ -1,6 +1,5 @@
 package christmas.model;
 
-import christmas.constants.EventConstants;
 import christmas.constants.ExceptionMessages;
 import christmas.constants.Menus;
 
@@ -96,7 +95,7 @@ public class Menu {
     public List<String> provideOrderedMenusInfo() {
         List<String> orderedMenusInfo = new ArrayList<>();
         for (Map.Entry<Menus, Integer> orderedMenu : orderedMenus.entrySet()) {
-            String orderedMenuInfo = orderedMenu.getKey().name() + orderedMenu.getValue();
+            String orderedMenuInfo = Menus.getNameByMenus(orderedMenu.getKey())+ " " + orderedMenu.getValue()+ "개";
             orderedMenusInfo.add(orderedMenuInfo);
         }
         return orderedMenusInfo;
