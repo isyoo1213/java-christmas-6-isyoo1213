@@ -8,10 +8,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import static christmas.constants.EventConstants.SPACING_STRING;
+import static christmas.service.EventService.GIFT_PRESENTATION_AMOUNT;
+import static christmas.service.EventService.GIFT_PRESENTATION_UNIT;
 import static org.assertj.core.api.Assertions.*;
 
 public class EventServiceTest {
@@ -62,5 +63,23 @@ public class EventServiceTest {
                 .isEqualTo(resultOrder.provideOrderedMenusInfo());
         assertThat(eventService.saveOrder(defaultDate, defaultMenu, defaultEventsResult).provideEventsResultInfo())
                 .isEqualTo(resultOrder.provideEventsResultInfo());
+    }
+
+    @DisplayName("이벤트 계산 테스트 - 정상 데이터 - 성공")
+    @Test
+    void calculateEventsTest() {
+        Map<Events, Integer> resultEventsResult = new LinkedHashMap<>();
+
+        assertThat(eventService.calculateEvents(defaultDate, defaultMenu))
+                .isEqualTo(resultEventsResult);
+    }
+
+    @DisplayName("증정 이벤트 결과 내역 계산 테스트 - 정상 데이터 - 성공")
+    @Test
+    void calculateGiftPresentationMenu() {
+        List<String> testEvents = Arrays.asList("특별 할인", "평일 할인", "증정 이벤트");
+
+        assertThat(eventService.calculateGiftPresentationMenu(testEvents))
+                .isEqualTo(Events.provideEventName(Events.GIFT_PRESENTATION) + SPACING_STRING + GIFT_PRESENTATION_AMOUNT + GIFT_PRESENTATION_UNIT);
     }
 }
