@@ -9,9 +9,7 @@ public enum ExceptionMessages {
     DUPLICATED_MENU_ORDER("중복되는 메뉴 주문이 존재합니다. 수량을 조정해주세요."),
     WRONG_EACH_MENU_AMOUNT("각 메뉴는 1개 이상을 주문해주세요."),
     WRONG_MENU_TOTAL_AMOUNT("총 메뉴 주문 수량이 20개 이하여야 이벤트를 참여할 수 있습니다."),
-    UNDER_MINIMUM_TOTAL_AMOUNT("총 주문 금액이 10,000원 이상이어야 이벤트를 참여할 수 있습니다."),
-    WRONG_DAY_NUMBER_RANGE("날짜는 1 ~ 31 사이의 숫자를 입력해주세요."),
-    ONLY_BEVERAGE_ORDER("음료만 주문할 경우 이벤트를 참여할 수 없습니다.");
+    WRONG_DAY_NUMBER_RANGE("날짜는 1 ~ 31 사이의 숫자를 입력해주세요.");
 
     private static final String ERROR_TAG = "[ERROR] ";
     private final String exceptionMessages;
