@@ -3,6 +3,9 @@ package christmas.model;
 import christmas.constants.Days;
 import christmas.constants.ExceptionMessages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static christmas.constants.EventConstants.*;
 
 public class Date {
@@ -37,5 +40,12 @@ public class Date {
 
     public boolean isSpecialday() {
         return Days.calculateDate(date).equals(Days.SPECIALDAY);
+    }
+
+    public List<String> provideDateInfo() {
+        List<String> dateInfo = new ArrayList<>();
+        dateInfo.add(Days.calculateDate(date).name());
+        dateInfo.add(String.valueOf(date));
+        return dateInfo;
     }
 }
