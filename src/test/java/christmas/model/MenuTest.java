@@ -58,4 +58,18 @@ public class MenuTest {
 
         assertThat(testMenus.provideTotalPrice()).isEqualTo(expectedResult);
     }
+
+    @DisplayName("디저트 카테고리 수량 반환 테스트 - 정상 데이터 - 성공")
+    @Test
+    void provideDesertCategoryAmountTest() {
+        Map<String, Integer> testOrderedMenus = new HashMap<>();
+        testOrderedMenus.put("타파스", 2);
+        testOrderedMenus.put("초코케이크", 1);
+        testOrderedMenus.put("티본스테이크", 3);
+        testOrderedMenus.put("아이스크림", 5);
+        Menu testMenus = new Menu(testOrderedMenus);
+        int expectedResult = 6;
+
+        assertThat(testMenus.provideDessertAmount()).isEqualTo(expectedResult);
+    }
 }
