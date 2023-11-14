@@ -13,17 +13,20 @@ public enum Events {
     SPECIAL_DISCOUNT("특별 할인"),
     GIFT_PRESENTATION("증정 이벤트");
 
-    private static final Map<String, Events> eventNames =
+    private static final Map<Events, String> eventNames =
             Collections.unmodifiableMap(Stream.of(values())
-                    .collect(Collectors.toMap(Events::eventName, Function.identity())));
+                    .collect(Collectors.toMap(Function.identity(), Events::eventName)));
     private final String eventName;
 
     Events(String eventName) {
         this.eventName = eventName;
     }
 
+    public static String provideEventName(Events event) {
+        return eventNames.get(event);
+    }
+
     private String eventName() {
         return eventName;
     }
-
 }
