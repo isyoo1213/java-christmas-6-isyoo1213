@@ -92,16 +92,12 @@ public class Menu {
         return totalMainAmount;
     }
 
-    public List<String> provideOrderedMenusInfo() {
+    public List<String> provideOrderedMenus() {
         List<String> orderedMenusInfo = new ArrayList<>();
         for (Map.Entry<Menus, Integer> orderedMenu : orderedMenus.entrySet()) {
             String orderedMenuInfo = Menus.getNameByMenus(orderedMenu.getKey())+ " " + orderedMenu.getValue()+ "개";
             orderedMenusInfo.add(orderedMenuInfo);
         }
         return orderedMenusInfo;
-    }
-
-    public boolean isOverGiftPresentationAmount() {
-        return provideTotalPrice() >= GIFT_PRESENTATION_EVENT_AMOUNT;
     }
 }
