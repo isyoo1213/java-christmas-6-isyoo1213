@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.constants.EventConstants;
 import christmas.constants.ExceptionMessages;
 import christmas.constants.Menus;
 
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+
+import static christmas.constants.EventConstants.*;
 
 public class Menu {
     private final Map<Menus, Integer> orderedMenus;
@@ -68,5 +71,25 @@ public class Menu {
             categories.add(menus.category());
         }
         return categories;
+    }
+
+    public int provideDessertAmount() {
+        int totalDessertAmount = 0;
+        for (Menus menus : orderedMenus.keySet()) {
+            if (menus.category().equals(BEVERAGE_CATEGORY_STRING)) {
+                totalDessertAmount += orderedMenus.get(menus);
+            }
+        }
+        return totalDessertAmount;
+    }
+
+    public int provideMainAmount() {
+        int totalMainAmount = 0;
+        for (Menus menus : orderedMenus.keySet()) {
+            if (menus.category().equals(MAIN_CATEGORY_STRING)) {
+                totalMainAmount += orderedMenus.get(menus);
+            }
+        }
+        return totalMainAmount;
     }
 }
