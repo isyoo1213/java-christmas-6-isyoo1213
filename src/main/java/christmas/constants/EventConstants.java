@@ -18,4 +18,6 @@ public class EventConstants {
     public static final String DESSERT_CATEGORY_STRING = "디저트";
     public static final String MAIN_CATEGORY_STRING = "메인";
     public static final String BEVERAGE_CATEGORY_STRING = "음료";
+
+    public static final String COLONS_STRING = ":";
 }
