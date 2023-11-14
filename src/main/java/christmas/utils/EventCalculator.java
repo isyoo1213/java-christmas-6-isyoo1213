@@ -4,7 +4,7 @@ import christmas.constants.Events;
 import christmas.model.Date;
 import christmas.model.Menu;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +31,7 @@ public class EventCalculator {
     }
 
     public Map<Events, Integer> calculateEvents(Menu menu, Date date) {
-        Map<Events, Integer> availableEvents = new HashMap<>();
+        Map<Events, Integer> availableEvents = new LinkedHashMap<>();
         calculateDiscount(menu, date, availableEvents);
         calculateGiftPresentation(menu, availableEvents);
         return availableEvents;
