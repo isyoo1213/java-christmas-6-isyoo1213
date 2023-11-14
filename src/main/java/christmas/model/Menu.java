@@ -101,4 +101,8 @@ public class Menu {
         }
         return orderedMenusInfo;
     }
+
+    public boolean isOverGiftPresentationAmount() {
+        return provideTotalPrice() >= GIFT_PRESENTATION_EVENT_AMOUNT;
+    }
 }
