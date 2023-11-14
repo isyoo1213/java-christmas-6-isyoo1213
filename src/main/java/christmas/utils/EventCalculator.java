@@ -7,7 +7,6 @@ import java.util.List;
 import static christmas.constants.EventConstants.*;
 
 public class EventCalculator {
-    private final String BEVERAGE_CATEGORY_STRING = "음료";
 
     public boolean isParticipate(Menu menu) {
         int totalPrice = menu.provideTotalPrice();

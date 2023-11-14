@@ -5,6 +5,7 @@ public class EventConstants {
     public static final Integer ZERO = 0;
     public static final Integer END_DAY_OF_MONTH = 31;
     public static final Integer CHRISTMAS_DATE = 25;
+
     public static final Integer MINIMUM_PARTICIPATION_AMOUNT = 10000;
     public static final Integer GIFT_PRESENTATION_EVENT_AMOUNT = 120000;
     public static final Integer BASIC_DDAY_DISCOUNT_AMOUNT = 1000;
@@ -13,4 +14,8 @@ public class EventConstants {
     public static final Integer WEEKEND_DISCOUNT_AMOUNT = 2023;
     public static final Integer SPECIALDAY_DISCOUNT_AMOUNT = 1000;
     public static final Integer GIFT_PRESENTATION_BENEFIT = 25000;
+
+    public static final String DESSERT_CATEGORY_STRING = "디저트";
+    public static final String MAIN_CATEGORY_STRING = "메인";
+    public static final String BEVERAGE_CATEGORY_STRING = "음료";
 }
