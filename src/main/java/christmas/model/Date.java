@@ -5,6 +5,7 @@ import christmas.constants.ExceptionMessages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static christmas.constants.EventConstants.*;
 
@@ -31,20 +32,23 @@ public class Date {
     }
 
     public boolean isWeekday() {
-        return Days.calculateDate(date).equals(Days.WEEKDAY);
+        return provideDateInfo().contains(Days.WEEKDAY.name());
     }
 
     public boolean isWeekend() {
-        return Days.calculateDate(date).equals(Days.WEEKEND);
+        return provideDateInfo().contains(Days.WEEKEND.name());
     }
 
     public boolean isSpecialday() {
-        return Days.calculateDate(date).equals(Days.SPECIALDAY);
+        return provideDateInfo().contains(Days.SPECIALDAY.name());
     }
 
     public List<String> provideDateInfo() {
         List<String> dateInfo = new ArrayList<>();
-        dateInfo.add(Days.calculateDate(date).name());
+        Set<Days> appliedDays = Days.calculateDate(date);
+        for (Days appliedDay : appliedDays) {
+            dateInfo.add(appliedDay.name());
+        }
         dateInfo.add(String.valueOf(date));
         return dateInfo;
     }

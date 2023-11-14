@@ -3,6 +3,9 @@ package christmas.constants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class DaysTest {
@@ -11,7 +14,8 @@ public class DaysTest {
     @Test
     void calculateDateWeekdayTest() {
         int testDate = 20;
-        Days expectedResult = Days.WEEKDAY;
+        Set<Days> expectedResult = new LinkedHashSet<>();
+        expectedResult.add(Days.WEEKDAY);
         assertThat(Days.calculateDate(testDate)).isEqualTo(expectedResult);
     }
 
@@ -19,7 +23,8 @@ public class DaysTest {
     @Test
     void calculateDateWeekendTest() {
         int testDate = 22;
-        Days expectedResult = Days.WEEKEND;
+        Set<Days> expectedResult = new LinkedHashSet<>();
+        expectedResult.add(Days.WEEKEND);
         assertThat(Days.calculateDate(testDate)).isEqualTo(expectedResult);
     }
 
@@ -27,7 +32,9 @@ public class DaysTest {
     @Test
     void calculateDateSpecialdayTest() {
         int testDate = 25;
-        Days expectedResult = Days.SPECIALDAY;
+        Set<Days> expectedResult = new LinkedHashSet<>();
+        expectedResult.add(Days.SPECIALDAY);
+        expectedResult.add(Days.WEEKDAY);
         assertThat(Days.calculateDate(testDate)).isEqualTo(expectedResult);
     }
 }
