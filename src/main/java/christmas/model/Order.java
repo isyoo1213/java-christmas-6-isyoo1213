@@ -1,10 +1,11 @@
 package christmas.model;
 
-import christmas.constants.EventConstants;
 import christmas.constants.Events;
 
 import java.text.DecimalFormat;
 import java.util.*;
+
+import static christmas.constants.EventConstants.*;
 
 public class Order {
     private final Map<String, List<String>> orderInfo;
@@ -26,12 +27,12 @@ public class Order {
     private List<String> calculateEventsResultInfo(Map<Events, Integer> eventsResult) {
         List<String> eventsResultInfo = new ArrayList<>();
         if (eventsResult.isEmpty()) {
-            return List.of("없음");
+            return List.of(NON_APPLIED_STRING);
         }
         for (Map.Entry<Events, Integer> eventResult : eventsResult.entrySet()) {
             String eventName = Events.provideEventName(eventResult.getKey());
-            String benefitAmount = new DecimalFormat("###,###").format(eventsResult.get(eventResult.getKey()));
-            eventsResultInfo.add(eventName + EventConstants.COLONS_STRING+ " -" + benefitAmount + "원");
+            String benefitAmount = new DecimalFormat("###,###").format(eventsResult.get(eventResult.getKey()) * -1);
+            eventsResultInfo.add(eventName + COLONS_STRING + SPACING_STRING + benefitAmount + PRICE_AMOUNT_UNIT);
         }
         return eventsResultInfo;
     }
