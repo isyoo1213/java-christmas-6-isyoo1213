@@ -45,7 +45,8 @@ public class InputValidator {
         Map<String, Integer> convertedMenuOrders = new ConcurrentHashMap<>();
         List<String[]> separatedMenuOrders = separateMenuAndAmount(menuOrders);
         for (String[] separatedMenuOrder : separatedMenuOrders) {
-            if (separatedMenuOrder.length != 2 || isEmpty(separatedMenuOrder[0]) || isEmpty(separatedMenuOrder[1]) || isNonNumericAmount(separatedMenuOrder[1])) {
+            if (separatedMenuOrder.length != 2 || isEmpty(separatedMenuOrder[0])
+                    || isEmpty(separatedMenuOrder[1]) || isNonNumericAmount(separatedMenuOrder[1])) {
                 ExceptionMessages.NON_NUMERIC_AMOUNT_INPUT.throwException();
             }
             convertedMenuOrders.put(separatedMenuOrder[0], Integer.parseInt(separatedMenuOrder[1]));
