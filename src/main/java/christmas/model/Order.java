@@ -12,7 +12,7 @@ public class Order {
     public Order(Date date, Menu menu, Map<Events, Integer> eventsResult) {
         Map<String, List<String>> orderInfo = new HashMap<>();
         List<String> dateInfo = date.provideDateInfo();
-        List<String> orderedMenusInfo = List.copyOf(menu.provideOrderedMenusInfo());
+        List<String> orderedMenusInfo = List.copyOf(menu.provideOrderedMenus());
         List<String> orderedMenusTotalPrice = List.of(new DecimalFormat("###,###").format(menu.provideTotalPrice()));
         List<String> eventsResultInfo = calculateEventsResultInfo(eventsResult);
         orderInfo.put("방문 날짜", dateInfo);
@@ -34,5 +34,21 @@ public class Order {
             eventsResultInfo.add(eventName + EventConstants.COLONS_STRING+ " -" + benefitAmount + "원");
         }
         return eventsResultInfo;
+    }
+
+    public List<String> provideVisitingDateInfo() {
+        return orderInfo.get("방문 날짜");
+    }
+
+    public List<String> provideOrderedMenusInfo() {
+        return orderInfo.get("주문 메뉴");
+    }
+
+    public List<String> provideOrderedMenusTotalPriceInfo() {
+        return orderInfo.get("할인 전 총주문 금액");
+    }
+
+    public List<String> provideEventsResultInfo() {
+        return orderInfo.get("혜택 내역");
     }
 }
