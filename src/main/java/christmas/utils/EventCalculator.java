@@ -72,7 +72,7 @@ public class EventCalculator {
 
     private void applyXmasDdayDiscount(Date date, Map<Events, Integer> availableEvents) {
         if (date.isFirstToXmas()) {
-            Integer discountAmount = BASIC_DDAY_DISCOUNT_AMOUNT + (DDAY_DISCOUNT_UNIT_AMOUNT * date.calculateDaysToXmas());
+            Integer discountAmount = BASIC_DDAY_DISCOUNT_AMOUNT + (DDAY_DISCOUNT_UNIT_AMOUNT * date.calculateDaysFromStartDayOfMonth());
             availableEvents.put(Events.CHRISTMAS_DDAY_DISCOUNT, discountAmount);
         }
     }

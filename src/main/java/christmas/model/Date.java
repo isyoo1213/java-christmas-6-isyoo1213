@@ -26,8 +26,8 @@ public class Date {
         return date >= 1 && date <= 25;
     }
 
-    public int calculateDaysToXmas() {
-        return CHRISTMAS_DATE - date;
+    public int calculateDaysFromStartDayOfMonth() {
+        return date - START_DAY_OF_MONTH;
     }
 
     public boolean isWeekday() {
