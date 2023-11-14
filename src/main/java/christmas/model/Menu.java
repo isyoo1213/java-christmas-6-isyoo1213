@@ -92,4 +92,13 @@ public class Menu {
         }
         return totalMainAmount;
     }
+
+    public List<String> provideOrderedMenusInfo() {
+        List<String> orderedMenusInfo = new ArrayList<>();
+        for (Map.Entry<Menus, Integer> orderedMenu : orderedMenus.entrySet()) {
+            String orderedMenuInfo = orderedMenu.getKey().name() + orderedMenu.getValue();
+            orderedMenusInfo.add(orderedMenuInfo);
+        }
+        return orderedMenusInfo;
+    }
 }
