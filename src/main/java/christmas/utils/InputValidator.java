@@ -2,7 +2,6 @@ package christmas.utils;
 
 import christmas.constants.ExceptionMessages;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,7 +34,9 @@ public class InputValidator {
 
     private List<String> castStringToStringList(String preprocessedInput) {
         String[] menuOrders = preprocessedInput.split(MENU_ORDER_SEPERATOR);
-        isNonMenuAmountSeparator(menuOrders);
+        if (isNonMenuAmountSeparator(menuOrders)) {
+            ExceptionMessages.NON_NUMERIC_AMOUNT_INPUT.throwException();
+        }
         return Stream.of(menuOrders)
                 .collect(Collectors.toList());
     }
@@ -44,7 +45,7 @@ public class InputValidator {
         Map<String, Integer> convertedMenuOrders = new ConcurrentHashMap<>();
         List<String[]> separatedMenuOrders = separateMenuAndAmount(menuOrders);
         for (String[] separatedMenuOrder : separatedMenuOrders) {
-            if (separatedMenuOrder.length != 2 || isEmpty(separatedMenuOrder[0]) || isEmpty(separatedMenuOrder[1])) {
+            if (separatedMenuOrder.length != 2 || isEmpty(separatedMenuOrder[0]) || isEmpty(separatedMenuOrder[1]) || isNonNumericAmount(separatedMenuOrder[1])) {
                 ExceptionMessages.NON_NUMERIC_AMOUNT_INPUT.throwException();
             }
             convertedMenuOrders.put(separatedMenuOrder[0], Integer.parseInt(separatedMenuOrder[1]));
@@ -76,6 +77,16 @@ public class InputValidator {
             Integer.parseInt(preprocessedInput);
         } catch (NumberFormatException e) {
             ExceptionMessages.NON_NUMERIC_DATE_INPUT.throwException();
+        }
+    }
+
+    private boolean isNonNumericAmount(String preprocessedInput) {
+        try {
+            Integer.parseInt(preprocessedInput);
+            return false;
+        } catch (NumberFormatException e) {
+            ExceptionMessages.NON_NUMERIC_AMOUNT_INPUT.throwException();
+            return true;
         }
     }
 
