@@ -76,6 +76,15 @@ public class InputValidatorTest {
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
+    @DisplayName("입력값 Map 변환 테스트 - NonNumeric 데이터 - 오류")
+    @ValueSource(strings = {"3", "제로콜라-a", "-,-"})
+    @ParameterizedTest
+    void convertInputToMapNonNumericTest(String input) {
+        assertThatThrownBy(() -> inputValidator.convertInputToMenuOrder(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
+
     @DisplayName("입력값 Map 변환 테스트 - 중복된 데이터 - 오류")
     @ValueSource(strings = {"시저샐러드-1,시저샐러드-2", "티본스테이크-1,티본스테이크-2,타파스-1"})
     @ParameterizedTest
