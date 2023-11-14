@@ -19,6 +19,9 @@ public class EventConstants {
     public static final String DESSERT_CATEGORY_STRING = "디저트";
     public static final String MAIN_CATEGORY_STRING = "메인";
     public static final String BEVERAGE_CATEGORY_STRING = "음료";
+    public static final String NON_APPLIED_STRING = "없음";
+    public static final String PRICE_AMOUNT_UNIT = "원";
 
     public static final String COLONS_STRING = ":";
+    public static final String SPACING_STRING = " ";
 }
