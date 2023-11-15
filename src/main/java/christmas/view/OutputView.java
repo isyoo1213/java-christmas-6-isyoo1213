@@ -27,6 +27,17 @@ public class OutputView {
         printTotalBenefitsAmountInfo(totalBenefitsAmount);
     }
 
+    public void printDiscountedTotalAmountInfo(int discountedTotalAMountInfo) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(new DecimalFormat("###,###").format(discountedTotalAMountInfo) + PRICE_AMOUNT_UNIT);
+        System.out.println();
+    }
+
+    public void printEventBadgeStatus(String badgeInfo) {
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(badgeInfo);
+    }
+
     private void printOrderedMenus(List<String> orderedMenus) {
         System.out.println("<주문 메뉴>");
         for (String orderedMenu : orderedMenus) {
