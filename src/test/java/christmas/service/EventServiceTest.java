@@ -96,4 +96,20 @@ public class EventServiceTest {
         assertThat(eventService.calculateTotalBenefitsAmount(testEventsResult))
                 .isEqualTo(expectedResult);
     }
+    @DisplayName("할인 후 예상 결제 금액 계산 테스트 - 정상 데이터 - 성공")
+    @Test
+    void calculateDiscountedTotalAmountTest() {
+        Map<String, Integer> testAmounts = new LinkedHashMap<>();
+        Map<Events, Integer> testEventsResult = new LinkedHashMap<>();
+        testAmounts.put("할인 전 총주문 금액", 150000);
+        testAmounts.put("총혜택 금액", -29223);
+        testEventsResult.put(Events.CHRISTMAS_DDAY_DISCOUNT, 1200);
+        testEventsResult.put(Events.WEEKDAY_DISCOUNT, 2023);
+        testEventsResult.put(Events.SPECIAL_DISCOUNT, 1000);
+        testEventsResult.put(Events.GIFT_PRESENTATION, 25000);
+        int expectedResult = 145777;
+
+        assertThat(eventService.calculateDiscountedTotalAmount(testAmounts, testEventsResult))
+                .isEqualTo(expectedResult);
+    }
 }
