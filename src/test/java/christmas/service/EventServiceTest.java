@@ -11,16 +11,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static christmas.constants.EventConstants.MENU_AMOUNT_UNIT;
-import static christmas.constants.EventConstants.NON_APPLIED_STRING;
-import static christmas.constants.EventConstants.SPACING_STRING;
-import static christmas.service.EventService.GIFT_PRESENTATION_AMOUNT;
+import static christmas.constants.EventConstants.*;
+import static christmas.service.EventService.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class EventServiceTest {
     private static Menu defaultMenu;
     private static Date defaultDate;
-    private static Map<Events, Integer> defaultEventsResult = new HashMap<>();
+    private static final Map<Events, Integer> defaultEventsResult = new HashMap<>();
     EventService eventService = new EventService();
 
     @BeforeAll
@@ -82,7 +80,7 @@ public class EventServiceTest {
         List<String> testEvents = Arrays.asList("특별 할인", "평일 할인", "증정 이벤트");
 
         assertThat(eventService.calculateGiftPresentationMenu(testEvents))
-                .isEqualTo(Events.provideEventName(Events.GIFT_PRESENTATION) + SPACING_STRING + GIFT_PRESENTATION_AMOUNT + MENU_AMOUNT_UNIT);
+                .isEqualTo(GIFT_PRESENTATION_MENU + SPACING_STRING + GIFT_PRESENTATION_AMOUNT + MENU_AMOUNT_UNIT);
     }
 
     @DisplayName("총혜택 금액 계산 테스트 - 정상 데이터 - 성공")
