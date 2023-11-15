@@ -21,6 +21,12 @@ public class OutputView {
         printOrderedMenusTotalAmount(orderedMenusTotalAmount);
     }
 
+    public void printAppliedBenefitsInfo(String giftPresentationMenu, List<String> benefitsInfo, int totalBenefitsAmount) {
+        printGiftPresentation(giftPresentationMenu);
+        printBenefitsInfo(benefitsInfo);
+        printTotalBenefitsAmountInfo(totalBenefitsAmount);
+    }
+
     private void printOrderedMenus(List<String> orderedMenus) {
         System.out.println("<주문 메뉴>");
         for (String orderedMenu : orderedMenus) {
@@ -32,6 +38,26 @@ public class OutputView {
     private void printOrderedMenusTotalAmount(int orderedMenusTotalAmount) {
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(new DecimalFormat("###,###").format(orderedMenusTotalAmount) + PRICE_AMOUNT_UNIT);
+        System.out.println();
+    }
+
+    private void printGiftPresentation(String giftPresentationMenu) {
+        System.out.println("<증정 메뉴>");
+        System.out.println(giftPresentationMenu);
+        System.out.println();
+    }
+
+    private void printBenefitsInfo(List<String> benefitsInfo) {
+        System.out.println("<혜택 내역>");
+        for (String benefitInfo : benefitsInfo) {
+            System.out.println(benefitInfo);
+        }
+        System.out.println();
+    }
+
+    private void printTotalBenefitsAmountInfo(int totalBenefitsAmountInfo) {
+        System.out.println("<총혜택 금액>");
+        System.out.println(new DecimalFormat("###,###").format(totalBenefitsAmountInfo) + PRICE_AMOUNT_UNIT);
         System.out.println();
     }
 }
