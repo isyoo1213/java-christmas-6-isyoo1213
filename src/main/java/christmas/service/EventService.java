@@ -19,7 +19,6 @@ public class EventService {
     public static final Integer SANTA_BADGE_AMOUNT = 20000;
     public static final Integer GIFT_PRESENTATION_AMOUNT = 1;
     public static final String GIFT_PRESENTATION_MENU = "샴페인";
-    public static final String GIFT_PRESENTATION_UNIT = "개";
 
     EventCalculator eventCalculator = new EventCalculator();
 
@@ -45,7 +44,7 @@ public class EventService {
     public String calculateGiftPresentationMenu(List<String> eventsResult) {
         for (String eventResult : eventsResult) {
             if (eventResult.contains(Events.provideEventName(Events.GIFT_PRESENTATION))) {
-                return GIFT_PRESENTATION_MENU + SPACING_STRING + GIFT_PRESENTATION_AMOUNT + GIFT_PRESENTATION_UNIT;
+                return GIFT_PRESENTATION_MENU + SPACING_STRING + GIFT_PRESENTATION_AMOUNT + MENU_AMOUNT_UNIT;
             }
         }
         return NON_APPLIED_STRING;

@@ -21,6 +21,7 @@ public class EventConstants {
     public static final String BEVERAGE_CATEGORY_STRING = "음료";
     public static final String NON_APPLIED_STRING = "없음";
     public static final String PRICE_AMOUNT_UNIT = "원";
+    public static final String MENU_AMOUNT_UNIT = "개";
 
     public static final String COLONS_STRING = ":";
     public static final String SPACING_STRING = " ";

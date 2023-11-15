@@ -92,7 +92,7 @@ public class Menu {
     public List<String> provideOrderedMenus() {
         List<String> orderedMenusInfo = new ArrayList<>();
         for (Map.Entry<Menus, Integer> orderedMenu : orderedMenus.entrySet()) {
-            String orderedMenuInfo = Menus.getNameByMenus(orderedMenu.getKey())+ " " + orderedMenu.getValue()+ "개";
+            String orderedMenuInfo = Menus.getNameByMenus(orderedMenu.getKey())+ " " + orderedMenu.getValue() + MENU_AMOUNT_UNIT;
             orderedMenusInfo.add(orderedMenuInfo);
         }
         return orderedMenusInfo;
