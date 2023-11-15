@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.constants.Badges;
 import christmas.constants.Events;
 import christmas.model.Date;
 import christmas.model.Menu;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static christmas.constants.EventConstants.NON_APPLIED_STRING;
 import static christmas.constants.EventConstants.SPACING_STRING;
 import static christmas.service.EventService.GIFT_PRESENTATION_AMOUNT;
 import static christmas.service.EventService.GIFT_PRESENTATION_UNIT;
@@ -96,6 +98,7 @@ public class EventServiceTest {
         assertThat(eventService.calculateTotalBenefitsAmount(testEventsResult))
                 .isEqualTo(expectedResult);
     }
+
     @DisplayName("할인 후 예상 결제 금액 계산 테스트 - 정상 데이터 - 성공")
     @Test
     void calculateDiscountedTotalAmountTest() {
@@ -111,5 +114,19 @@ public class EventServiceTest {
 
         assertThat(eventService.calculateDiscountedTotalAmount(testAmounts, testEventsResult))
                 .isEqualTo(expectedResult);
+    }
+
+    @DisplayName("금액에 따른 배지 부여 테스트 - 정상 데이터 - 성공")
+    @Test
+    void calculateBadgeTest() {
+        int testTotalBenefitsAmount1 = 3400;
+        int testTotalBenefitsAmount2 = 7500;
+        int testTotalBenefitsAmount3 = 15000;
+        int testTotalBenefitsAmount4 = 28000;
+
+        assertThat(eventService.calculateBadge(testTotalBenefitsAmount1)).isEqualTo(NON_APPLIED_STRING);
+        assertThat(eventService.calculateBadge(testTotalBenefitsAmount2)).isEqualTo(Badges.STAR.badgeName());
+        assertThat(eventService.calculateBadge(testTotalBenefitsAmount3)).isEqualTo(Badges.TREE.badgeName());
+        assertThat(eventService.calculateBadge(testTotalBenefitsAmount4)).isEqualTo(Badges.SANTA.badgeName());
     }
 }
