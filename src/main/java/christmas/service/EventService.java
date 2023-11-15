@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.constants.Badges;
 import christmas.constants.Events;
 import christmas.model.Date;
 import christmas.model.Menu;
@@ -13,6 +14,9 @@ import java.util.Map;
 import static christmas.constants.EventConstants.*;
 
 public class EventService {
+    public static final Integer STAR_BADGE_AMOUNT = 5000;
+    public static final Integer TREE_BADGE_AMOUNT = 10000;
+    public static final Integer SANTA_BADGE_AMOUNT = 20000;
     public static final Integer GIFT_PRESENTATION_AMOUNT = 1;
     public static final String GIFT_PRESENTATION_UNIT = "개";
 
@@ -44,5 +48,14 @@ public class EventService {
             }
         }
         return NON_APPLIED_STRING;
+    }
+
+    public int calculateTotalBenefitsAmount(Map<Events, Integer> eventsResult) {
+        int totalBenefitsAmount = 0;
+        for (Events event : eventsResult.keySet()) {
+            totalBenefitsAmount += eventsResult.get(event);
+        }
+        totalBenefitsAmount = totalBenefitsAmount * -1;
+        return totalBenefitsAmount;
     }
 }
