@@ -4,10 +4,7 @@ import christmas.constants.Menus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -92,7 +89,7 @@ public class MenuTest {
     @DisplayName("주문 메뉴 및 수량 반환 - 정상 데이터 - 성공")
     @Test
     void provideOrderedMenusTest() {
-        Map<String, Integer> testOrderedMenus = new HashMap<>();
+        Map<String, Integer> testOrderedMenus = new LinkedHashMap<>();
         testOrderedMenus.put("타파스", 3);
         testOrderedMenus.put("양송이수프", 2);
         testOrderedMenus.put("티본스테이크", 4);
