@@ -3,7 +3,7 @@ package christmas.service;
 import christmas.constants.Badges;
 import christmas.constants.Events;
 import christmas.model.Date;
-import christmas.model.Menu;
+import christmas.model.OrderedMenus;
 import christmas.model.Order;
 import christmas.utils.EventCalculator;
 
@@ -22,23 +22,23 @@ public class EventService {
 
     EventCalculator eventCalculator = new EventCalculator();
 
-    public Order saveOrder(Date visitingDate, Menu orderedMenu, Map<Events, Integer> eventResult) {
-        return new Order(visitingDate, orderedMenu, eventResult);
+    public Order saveOrder(Date visitingDate, OrderedMenus orderedOrderedMenus, Map<Events, Integer> eventResult) {
+        return new Order(visitingDate, orderedOrderedMenus, eventResult);
     }
 
     public Date saveVisitingDate(Integer convertedDate) {
         return new Date(convertedDate);
     }
 
-    public Menu saveOrderedMenu(Map<String, Integer> convertedOrderedMenu) {
-        return new Menu(convertedOrderedMenu);
+    public OrderedMenus saveOrderedMenu(Map<String, Integer> convertedOrderedMenu) {
+        return new OrderedMenus(convertedOrderedMenu);
     }
 
-    public Map<Events, Integer> calculateEvents(Date visitingDate, Menu orderedMenu) {
-        if (!eventCalculator.isParticipate(orderedMenu)) {
+    public Map<Events, Integer> calculateEvents(Date visitingDate, OrderedMenus orderedOrderedMenus) {
+        if (!eventCalculator.isParticipate(orderedOrderedMenus)) {
             return new HashMap<>();
         }
-        return eventCalculator.calculateEvents(orderedMenu, visitingDate);
+        return eventCalculator.calculateEvents(orderedOrderedMenus, visitingDate);
     }
 
     public String calculateGiftPresentationMenu(List<String> eventsResult) {

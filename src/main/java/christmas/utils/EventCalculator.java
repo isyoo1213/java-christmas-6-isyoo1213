@@ -2,7 +2,7 @@ package christmas.utils;
 
 import christmas.constants.Events;
 import christmas.model.Date;
-import christmas.model.Menu;
+import christmas.model.OrderedMenus;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,16 +19,16 @@ public class EventCalculator {
     private final Integer WEEKEND_DISCOUNT_AMOUNT = 2023;
     private final Integer SPECIALDAY_DISCOUNT_AMOUNT = 1000;
 
-    public boolean isParticipate(Menu menu) {
-        int totalPrice = menu.provideTotalPrice();
-        if (isUnderMinimumAmount(totalPrice) || isOnlyBeverage(menu)) {
+    public boolean isParticipate(OrderedMenus orderedMenus) {
+        int totalPrice = orderedMenus.provideTotalPrice();
+        if (isUnderMinimumAmount(totalPrice) || isOnlyBeverage(orderedMenus)) {
             return false;
         }
         return true;
     }
 
-    private boolean isOnlyBeverage(Menu menu) {
-        List<String> categories = menu.provideMenuCategories();
+    private boolean isOnlyBeverage(OrderedMenus orderedMenus) {
+        List<String> categories = orderedMenus.provideMenuCategories();
         categories.remove(BEVERAGE_CATEGORY_STRING);
         return categories.size() == 0;
     }
@@ -37,23 +37,23 @@ public class EventCalculator {
         return totalAmount < MINIMUM_PARTICIPATION_AMOUNT;
     }
 
-    public Map<Events, Integer> calculateEvents(Menu menu, Date date) {
+    public Map<Events, Integer> calculateEvents(OrderedMenus orderedMenus, Date date) {
         Map<Events, Integer> availableEvents = new LinkedHashMap<>();
-        calculateDiscount(menu, date, availableEvents);
-        calculateGiftPresentation(menu, availableEvents);
+        calculateDiscount(orderedMenus, date, availableEvents);
+        calculateGiftPresentation(orderedMenus, availableEvents);
         return availableEvents;
     }
 
-    private void calculateGiftPresentation(Menu menu, Map<Events, Integer> availableEvents) {
-        if (menu.provideTotalPrice() >= GIFT_PRESENTATION_EVENT_AMOUNT) {
+    private void calculateGiftPresentation(OrderedMenus orderedMenus, Map<Events, Integer> availableEvents) {
+        if (orderedMenus.provideTotalPrice() >= GIFT_PRESENTATION_EVENT_AMOUNT) {
             availableEvents.put(Events.GIFT_PRESENTATION, GIFT_PRESENTATION_BENEFIT);
         }
     }
 
-    private void calculateDiscount(Menu menu, Date date, Map<Events, Integer> availableEvents) {
+    private void calculateDiscount(OrderedMenus orderedMenus, Date date, Map<Events, Integer> availableEvents) {
         applyXmasDdayDiscount(date, availableEvents);
-        applyWeekdayDiscount(menu, date, availableEvents);
-        applyWeekendDiscount(menu, date, availableEvents);
+        applyWeekdayDiscount(orderedMenus, date, availableEvents);
+        applyWeekendDiscount(orderedMenus, date, availableEvents);
         applySpecialdayDiscount(date, availableEvents);
     }
 
@@ -63,16 +63,16 @@ public class EventCalculator {
         }
     }
 
-    private void applyWeekendDiscount(Menu menu, Date date, Map<Events, Integer> availableEvents) {
+    private void applyWeekendDiscount(OrderedMenus orderedMenus, Date date, Map<Events, Integer> availableEvents) {
         if (date.isWeekend()) {
-            Integer discountAmount = WEEKEND_DISCOUNT_AMOUNT * menu.provideMainAmount();
+            Integer discountAmount = WEEKEND_DISCOUNT_AMOUNT * orderedMenus.provideMainAmount();
             availableEvents.put(Events.WEEKEND_DISCOUNT, discountAmount);
         }
     }
 
-    private void applyWeekdayDiscount(Menu menu, Date date, Map<Events, Integer> availableEvents) {
+    private void applyWeekdayDiscount(OrderedMenus orderedMenus, Date date, Map<Events, Integer> availableEvents) {
         if (date.isWeekday()) {
-            Integer discountAmount = WEEKDAY_DISCOUNT_AMOUNT * menu.provideDessertAmount();
+            Integer discountAmount = WEEKDAY_DISCOUNT_AMOUNT * orderedMenus.provideDessertAmount();
             availableEvents.put(Events.WEEKDAY_DISCOUNT, discountAmount);
         }
     }
