@@ -25,6 +25,7 @@ public class EventConstants {
 
     public static final String COLONS_STRING = ":";
     public static final String SPACING_STRING = " ";
+    public static final String PRICE_PATTERN = "###,###";
 
     public static final String VISITING_DATE = "방문 날짜";
     public static final String ORDERED_MENUS = "주문 메뉴";

@@ -14,7 +14,7 @@ public class Order {
         Map<String, List<String>> orderInfo = new HashMap<>();
         List<String> dateInfo = date.provideDateInfo();
         List<String> orderedMenusInfo = List.copyOf(menu.provideOrderedMenus());
-        List<String> orderedMenusTotalPrice = List.of(new DecimalFormat("###,###").format(menu.provideTotalPrice()));
+        List<String> orderedMenusTotalPrice = List.of(new DecimalFormat(PRICE_PATTERN).format(menu.provideTotalPrice()));
         List<String> eventsResultInfo = calculateEventsResultInfo(eventsResult);
         orderInfo.put("방문 날짜", dateInfo);
         orderInfo.put("주문 메뉴", orderedMenusInfo);
@@ -31,7 +31,7 @@ public class Order {
         }
         for (Map.Entry<Events, Integer> eventResult : eventsResult.entrySet()) {
             String eventName = Events.provideEventName(eventResult.getKey());
-            String benefitAmount = new DecimalFormat("###,###").format(eventsResult.get(eventResult.getKey()) * -1);
+            String benefitAmount = new DecimalFormat(PRICE_PATTERN).format(eventsResult.get(eventResult.getKey()) * -1);
             eventsResultInfo.add(eventName + COLONS_STRING + SPACING_STRING + benefitAmount + PRICE_AMOUNT_UNIT);
         }
         return eventsResultInfo;

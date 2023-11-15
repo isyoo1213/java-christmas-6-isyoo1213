@@ -29,7 +29,7 @@ public class OutputView {
 
     public void printDiscountedTotalAmountInfo(int discountedTotalAMountInfo) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(new DecimalFormat("###,###").format(discountedTotalAMountInfo) + PRICE_AMOUNT_UNIT);
+        System.out.println(new DecimalFormat(PRICE_PATTERN).format(discountedTotalAMountInfo) + PRICE_AMOUNT_UNIT);
         System.out.println();
     }
 
@@ -48,7 +48,7 @@ public class OutputView {
 
     private void printOrderedMenusTotalAmount(int orderedMenusTotalAmount) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(new DecimalFormat("###,###").format(orderedMenusTotalAmount) + PRICE_AMOUNT_UNIT);
+        System.out.println(new DecimalFormat(PRICE_PATTERN).format(orderedMenusTotalAmount) + PRICE_AMOUNT_UNIT);
         System.out.println();
     }
 
@@ -68,7 +68,7 @@ public class OutputView {
 
     private void printTotalBenefitsAmountInfo(int totalBenefitsAmountInfo) {
         System.out.println("<총혜택 금액>");
-        System.out.println(new DecimalFormat("###,###").format(totalBenefitsAmountInfo) + PRICE_AMOUNT_UNIT);
+        System.out.println(new DecimalFormat(PRICE_PATTERN).format(totalBenefitsAmountInfo) + PRICE_AMOUNT_UNIT);
         System.out.println();
     }
 }
