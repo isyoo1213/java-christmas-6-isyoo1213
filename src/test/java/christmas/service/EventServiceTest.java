@@ -82,4 +82,18 @@ public class EventServiceTest {
         assertThat(eventService.calculateGiftPresentationMenu(testEvents))
                 .isEqualTo(Events.provideEventName(Events.GIFT_PRESENTATION) + SPACING_STRING + GIFT_PRESENTATION_AMOUNT + GIFT_PRESENTATION_UNIT);
     }
+
+    @DisplayName("총혜택 금액 계산 테스트 - 정상 데이터 - 성공")
+    @Test
+    void calculateTotalBenefitsAmountTest() {
+        Map<Events, Integer> testEventsResult = new LinkedHashMap<>();
+        testEventsResult.put(Events.CHRISTMAS_DDAY_DISCOUNT, 1200);
+        testEventsResult.put(Events.WEEKDAY_DISCOUNT, 2023);
+        testEventsResult.put(Events.SPECIAL_DISCOUNT, 1000);
+        testEventsResult.put(Events.GIFT_PRESENTATION, 25000);
+        int expectedResult = -29223;
+
+        assertThat(eventService.calculateTotalBenefitsAmount(testEventsResult))
+                .isEqualTo(expectedResult);
+    }
 }
