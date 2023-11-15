@@ -3,10 +3,7 @@ package christmas.model;
 import christmas.constants.ExceptionMessages;
 import christmas.constants.Menus;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static christmas.constants.EventConstants.*;
 
@@ -15,7 +12,7 @@ public class Menu {
 
     public Menu(Map<String, Integer> convertedOrderedMenus) {
         validate(convertedOrderedMenus);
-        Map<Menus, Integer> orderedMenus = new EnumMap<>(Menus.class);
+        Map<Menus, Integer> orderedMenus = new LinkedHashMap<>();
         for (Map.Entry<String, Integer> convertedOrderedMenu : convertedOrderedMenus.entrySet()) {
             Menus orderedMenu = Menus.getMenusByName(convertedOrderedMenu.getKey());
             Integer orderedMenuAmount = convertedOrderedMenu.getValue();
