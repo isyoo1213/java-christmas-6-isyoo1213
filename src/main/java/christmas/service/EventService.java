@@ -22,8 +22,8 @@ public class EventService {
 
     EventCalculator eventCalculator = new EventCalculator();
 
-    public Order saveOrder(Date visitingDate, OrderedMenus orderedOrderedMenus, Map<Events, Integer> eventResult) {
-        return new Order(visitingDate, orderedOrderedMenus, eventResult);
+    public Order saveOrder(Date visitingDate, OrderedMenus orderedMenus, Map<Events, Integer> eventResult) {
+        return new Order(visitingDate, orderedMenus, eventResult);
     }
 
     public Date saveVisitingDate(Integer convertedDate) {
@@ -34,11 +34,11 @@ public class EventService {
         return new OrderedMenus(convertedOrderedMenu);
     }
 
-    public Map<Events, Integer> calculateEvents(Date visitingDate, OrderedMenus orderedOrderedMenus) {
-        if (!eventCalculator.isParticipate(orderedOrderedMenus)) {
+    public Map<Events, Integer> calculateEvents(Date visitingDate, OrderedMenus orderedMenus) {
+        if (!eventCalculator.isParticipate(orderedMenus)) {
             return new HashMap<>();
         }
-        return eventCalculator.calculateEvents(orderedOrderedMenus, visitingDate);
+        return eventCalculator.calculateEvents(orderedMenus, visitingDate);
     }
 
     public String calculateGiftPresentationMenu(List<String> eventsResult) {

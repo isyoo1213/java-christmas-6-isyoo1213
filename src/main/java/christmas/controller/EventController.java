@@ -27,8 +27,8 @@ public class EventController {
         outputView.printWelcomeMessage();
 
         Date visitingDate = saveVisitingDate();
-        OrderedMenus orderedOrderedMenus = saveOrderedMenus();
-        Order order = applyEvents(visitingDate, orderedOrderedMenus);
+        OrderedMenus orderedMenus = saveOrderedMenus();
+        Order order = applyEvents(visitingDate, orderedMenus);
         printEventResult(order);
     }
 
@@ -47,20 +47,20 @@ public class EventController {
         try {
             String preprocessedOrderedMenus = inputValidator.preprocessInput(inputView.askMenuOrdering());
             Map<String, Integer> convertedOrderedMenus = inputValidator.convertInputToMenuOrder(preprocessedOrderedMenus);
-            OrderedMenus orderedOrderedMenus = eventService.saveOrderedMenu(convertedOrderedMenus);
-            amounts.put(ORDERED_MENU_TOTAL_PRICE, orderedOrderedMenus.provideTotalPrice());
-            return orderedOrderedMenus;
+            OrderedMenus orderedMenus = eventService.saveOrderedMenu(convertedOrderedMenus);
+            amounts.put(ORDERED_MENU_TOTAL_PRICE, orderedMenus.provideTotalPrice());
+            return orderedMenus;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return saveOrderedMenus();
         }
     }
 
-    private Order applyEvents(Date visitingDate, OrderedMenus orderedOrderedMenus) {
-        eventsResult.putAll(eventService.calculateEvents(visitingDate, orderedOrderedMenus));
+    private Order applyEvents(Date visitingDate, OrderedMenus orderedMenus) {
+        eventsResult.putAll(eventService.calculateEvents(visitingDate, orderedMenus));
         amounts.put(TOTAL_BENEFITS_AMOUNT, eventService.calculateTotalBenefitsAmount(eventsResult));
         amounts.put(DISCOUNTED_TOTAL_PRICE, eventService.calculateDiscountedTotalAmount(amounts, eventsResult));
-        return eventService.saveOrder(visitingDate, orderedOrderedMenus, eventsResult);
+        return eventService.saveOrder(visitingDate, orderedMenus, eventsResult);
     }
 
     private void printEventResult(Order order) {
@@ -78,9 +78,9 @@ public class EventController {
     }
 
     private void printUserMenusInfo(Order order) {
-        List<String> orderedMenusIinfo = order.provideOrderedMenusInfo();
+        List<String> orderedMenusInfo = order.provideOrderedMenusInfo();
         int orderedMenusTotalPrice = amounts.get(ORDERED_MENU_TOTAL_PRICE);
-        outputView.printUserMenusInfo(orderedMenusIinfo, orderedMenusTotalPrice);
+        outputView.printUserMenusInfo(orderedMenusInfo, orderedMenusTotalPrice);
     }
 
     private void printAppliedBenefitsInfo(Order order) {
