@@ -1,7 +1,9 @@
 package christmas.controller;
 
+import christmas.constants.Events;
 import christmas.model.Date;
 import christmas.model.Menu;
+import christmas.model.Order;
 import christmas.service.EventService;
 import christmas.utils.InputValidator;
 import christmas.view.InputView;
@@ -17,6 +19,7 @@ public class EventController {
     OutputView outputView = new OutputView();
     InputValidator inputValidator = new InputValidator();
     EventService eventService = new EventService();
+    private final Map<Events, Integer> eventsResult = new LinkedHashMap<>();
     private final Map<String, Integer> amounts = new LinkedHashMap<>();
 
     public void proceedEvent() {
@@ -24,6 +27,7 @@ public class EventController {
 
         Date visitingDate = saveVisitingDate();
         Menu orderedMenu = saveOrderedMenus();
+        Order order = applyEvents(visitingDate, orderedMenu);
     }
 
     private Date saveVisitingDate() {
@@ -48,5 +52,12 @@ public class EventController {
             System.out.println(e.getMessage());
             return saveOrderedMenus();
         }
+    }
+
+    private Order applyEvents(Date visitingDate, Menu orderedMenu) {
+        eventsResult.putAll(eventService.calculateEvents(visitingDate, orderedMenu));
+        amounts.put(TOTAL_BENEFITS_AMOUNT, eventService.calculateTotalBenefitsAmount(eventsResult));
+        amounts.put(DISCOUNTED_TOTAL_PRICE, eventService.calculateDiscountedTotalAmount(amounts, eventsResult));
+        return eventService.saveOrder(visitingDate, orderedMenu, eventsResult);
     }
 }
