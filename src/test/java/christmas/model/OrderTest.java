@@ -36,7 +36,7 @@ public class OrderTest {
     void provideOrderedMenusInfoTest() {
         Order testOrder = new Order(defaultDate, defaultMenu, defaultEventsResult);
         List<String> expectedResult = Arrays.asList("타파스 1개", "제로콜라 1개");
-        Assertions.assertThat(testOrder.provideOrderedMenusInfo()).isEqualTo(expectedResult);
+        Assertions.assertThat(testOrder.provideOrderedMenusInfo()).c(expectedResult);
     }
 
     @DisplayName("할인 전 총주문 금액 반환 테스트 - 정상 데이터 - 성공")

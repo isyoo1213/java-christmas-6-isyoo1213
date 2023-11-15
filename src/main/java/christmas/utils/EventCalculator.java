@@ -11,6 +11,13 @@ import java.util.Map;
 import static christmas.constants.EventConstants.*;
 
 public class EventCalculator {
+    private final Integer MINIMUM_PARTICIPATION_AMOUNT = 10000;
+    private final Integer GIFT_PRESENTATION_EVENT_AMOUNT = 120000;
+    private final Integer BASIC_DDAY_DISCOUNT_AMOUNT = 1000;
+    private final Integer DDAY_DISCOUNT_UNIT_AMOUNT = 100;
+    private final Integer WEEKDAY_DISCOUNT_AMOUNT = 2023;
+    private final Integer WEEKEND_DISCOUNT_AMOUNT = 2023;
+    private final Integer SPECIALDAY_DISCOUNT_AMOUNT = 1000;
 
     public boolean isParticipate(Menu menu) {
         int totalPrice = menu.provideTotalPrice();

@@ -9,7 +9,8 @@ public enum Days {
     SPECIALDAY("스페셜데이", List.of(3)),
     UNCATEGORIZED("미분류", List.of());
 
-
+    private static final Integer DAYS_OF_WEEK = 7;
+    private static final Integer CHRISTMAS_DATE = 25;
     private final String category;
     private final List<Integer> dividedDays;
 
@@ -21,10 +22,10 @@ public enum Days {
 
     public static Set<Days> calculateDate(Integer date) {
         Set<Days> appliedDays = new LinkedHashSet<>();
-        if (Objects.equals(date, EventConstants.CHRISTMAS_DATE)) {
+        if (Objects.equals(date, CHRISTMAS_DATE)) {
             appliedDays.add(SPECIALDAY);
         }
-        int dividedDate = date % EventConstants.DAYS_OF_WEEK;
+        int dividedDate = date % DAYS_OF_WEEK;
         List<Days> findDays = Arrays.stream(Days.values())
                 .filter((days) -> days.hasDividedDate(dividedDate))
                 .collect(Collectors.toList());
