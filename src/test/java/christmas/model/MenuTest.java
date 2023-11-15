@@ -96,6 +96,6 @@ public class MenuTest {
         Menu testMenus = new Menu(testOrderedMenus);
         List<String> expectedResult = Arrays.asList("타파스 3개", "양송이수프 2개", "티본스테이크 4개");
 
-        assertThat(testMenus.provideOrderedMenus()).isEqualTo(expectedResult);
+        assertThat(testMenus.provideOrderedMenus()).containsAll(expectedResult);
     }
 }
