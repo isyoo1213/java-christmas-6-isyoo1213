@@ -58,4 +58,12 @@ public class EventService {
         totalBenefitsAmount = totalBenefitsAmount * -1;
         return totalBenefitsAmount;
     }
+
+    public int calculateDiscountedTotalAmount(Map<String, Integer> amounts, Map<Events, Integer> eventsResult) {
+        int discountedTotalAMount = amounts.get("할인 전 총주문 금액") + amounts.get("총혜택 금액");
+        if (eventsResult.containsKey(Events.GIFT_PRESENTATION)) {
+            discountedTotalAMount += GIFT_PRESENTATION_BENEFIT;
+        }
+        return discountedTotalAMount;
+    }
 }
