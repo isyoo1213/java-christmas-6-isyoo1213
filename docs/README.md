@@ -119,8 +119,8 @@
 - [ ] 12월 이벤트 배지 출력
 
 2. InputView
-- [ ] 방문 날짜 입력
-- [ ] 주문 메뉴 입력
+- [x] 방문 날짜 입력
+- [x] 주문 메뉴 입력
 
 ### Controller
 1. EventController
