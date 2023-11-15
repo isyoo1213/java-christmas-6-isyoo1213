@@ -66,4 +66,17 @@ public class EventService {
         }
         return discountedTotalAMount;
     }
+
+    public String calculateBadge(int totalBenefitsAmount) {
+        if (totalBenefitsAmount >= SANTA_BADGE_AMOUNT) {
+            return Badges.SANTA.badgeName();
+        }
+        if (totalBenefitsAmount >= TREE_BADGE_AMOUNT) {
+            return Badges.TREE.badgeName();
+        }
+        if (totalBenefitsAmount >= STAR_BADGE_AMOUNT) {
+            return Badges.STAR.badgeName();
+        }
+        return NON_APPLIED_STRING;
+    }
 }
