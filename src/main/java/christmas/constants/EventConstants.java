@@ -24,4 +24,11 @@ public class EventConstants {
 
     public static final String COLONS_STRING = ":";
     public static final String SPACING_STRING = " ";
+
+    public static final String VISITING_DATE = "방문 날짜";
+    public static final String ORDERED_MENUS = "주문 메뉴";
+    public static final String APPLIED_BENEFITS = "혜택 내역";
+    public static final String ORDERED_MENU_TOTAL_PRICE = "할인 전 총주문 금액";
+    public static final String TOTAL_BENEFITS_AMOUNT = "총혜택 금액";
+    public static final String DISCOUNTED_TOTAL_PRICE = "할인 후 예상 결제 금액";
 }
