@@ -58,7 +58,7 @@ public class EventCalculator {
 
     private void applyWeekendDiscount(Menu menu, Date date, Map<Events, Integer> availableEvents) {
         if (date.isWeekend()) {
-            Integer discountAmount = WEEKEND_DISCOUNT_AMOUNT * menu.provideDessertAmount();
+            Integer discountAmount = WEEKEND_DISCOUNT_AMOUNT * menu.provideMainAmount();
             availableEvents.put(Events.WEEKEND_DISCOUNT, discountAmount);
         }
     }
