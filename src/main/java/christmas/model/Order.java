@@ -16,10 +16,10 @@ public class Order {
         List<String> orderedMenusInfo = List.copyOf(menu.provideOrderedMenus());
         List<String> orderedMenusTotalPrice = List.of(new DecimalFormat(PRICE_PATTERN).format(menu.provideTotalPrice()));
         List<String> eventsResultInfo = calculateEventsResultInfo(eventsResult);
-        orderInfo.put("방문 날짜", dateInfo);
-        orderInfo.put("주문 메뉴", orderedMenusInfo);
-        orderInfo.put("할인 전 총주문 금액", orderedMenusTotalPrice);
-        orderInfo.put("혜택 내역", eventsResultInfo);
+        orderInfo.put(VISITING_DATE, dateInfo);
+        orderInfo.put(ORDERED_MENUS, orderedMenusInfo);
+        orderInfo.put(ORDERED_MENU_TOTAL_PRICE, orderedMenusTotalPrice);
+        orderInfo.put(APPLIED_BENEFITS, eventsResultInfo);
 
         this.orderInfo = Map.copyOf(orderInfo);
     }
@@ -38,18 +38,18 @@ public class Order {
     }
 
     public List<String> provideVisitingDateInfo() {
-        return orderInfo.get("방문 날짜");
+        return orderInfo.get(VISITING_DATE);
     }
 
     public List<String> provideOrderedMenusInfo() {
-        return orderInfo.get("주문 메뉴");
+        return orderInfo.get(ORDERED_MENUS);
     }
 
     public List<String> provideOrderedMenusTotalPriceInfo() {
-        return orderInfo.get("할인 전 총주문 금액");
+        return orderInfo.get(ORDERED_MENU_TOTAL_PRICE);
     }
 
     public List<String> provideEventsResultInfo() {
-        return orderInfo.get("혜택 내역");
+        return orderInfo.get(APPLIED_BENEFITS);
     }
 }
