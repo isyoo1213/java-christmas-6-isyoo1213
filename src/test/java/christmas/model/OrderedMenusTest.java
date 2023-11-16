@@ -1,6 +1,6 @@
 package christmas.model;
 
-import christmas.constants.Menus;
+import christmas.constants.MenusConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -51,9 +51,9 @@ public class OrderedMenusTest {
         testOrderedMenus.put("티본스테이크", 3);
         OrderedMenus testMenus = new OrderedMenus(testOrderedMenus);
         int expectedResult = 0;
-        expectedResult += Menus.calculateEachMenuPrice(Menus.TAPAS, 2);
-        expectedResult += Menus.calculateEachMenuPrice(Menus.MUSHROOM_SOUP, 1);
-        expectedResult += Menus.calculateEachMenuPrice(Menus.TBONE_STEAK, 3);
+        expectedResult += MenusConstants.calculateEachMenuPrice(MenusConstants.TAPAS, 2);
+        expectedResult += MenusConstants.calculateEachMenuPrice(MenusConstants.MUSHROOM_SOUP, 1);
+        expectedResult += MenusConstants.calculateEachMenuPrice(MenusConstants.TBONE_STEAK, 3);
 
         assertThat(testMenus.provideTotalPrice()).isEqualTo(expectedResult);
     }

@@ -1,20 +1,20 @@
 package christmas.model;
 
 import christmas.constants.ExceptionMessages;
-import christmas.constants.Menus;
+import christmas.constants.MenusConstants;
 
 import java.util.*;
 
 import static christmas.constants.EventConstants.*;
 
 public class OrderedMenus {
-    private final Map<Menus, Integer> orderedMenus;
+    private final Map<MenusConstants, Integer> orderedMenus;
 
     public OrderedMenus(Map<String, Integer> convertedOrderedMenus) {
         validate(convertedOrderedMenus);
-        Map<Menus, Integer> orderedMenus = new LinkedHashMap<>();
+        Map<MenusConstants, Integer> orderedMenus = new LinkedHashMap<>();
         for (Map.Entry<String, Integer> convertedOrderedMenu : convertedOrderedMenus.entrySet()) {
-            Menus orderedMenu = Menus.getMenusByName(convertedOrderedMenu.getKey());
+            MenusConstants orderedMenu = MenusConstants.getMenusByName(convertedOrderedMenu.getKey());
             Integer orderedMenuAmount = convertedOrderedMenu.getValue();
             orderedMenus.put(orderedMenu, orderedMenuAmount);
         }
@@ -50,28 +50,28 @@ public class OrderedMenus {
     }
 
     private boolean isNonExistingMenu(String menuName) {
-        return Menus.getMenusByName(menuName).equals(Menus.UNCATEGORIZED);
+        return MenusConstants.getMenusByName(menuName).equals(MenusConstants.UNCATEGORIZED);
     }
 
     public int provideTotalPrice() {
         int totalPrice = 0;
-        for (Map.Entry<Menus, Integer> orderedMenu : orderedMenus.entrySet()) {
-            totalPrice += Menus.calculateEachMenuPrice(orderedMenu.getKey(), orderedMenu.getValue());
+        for (Map.Entry<MenusConstants, Integer> orderedMenu : orderedMenus.entrySet()) {
+            totalPrice += MenusConstants.calculateEachMenuPrice(orderedMenu.getKey(), orderedMenu.getValue());
         }
         return totalPrice;
     }
 
     public List<String> provideMenuCategories() {
         List<String> categories = new ArrayList<>();
-        for (Menus menus : orderedMenus.keySet()) {
-            categories.add(menus.category());
+        for (MenusConstants menu : orderedMenus.keySet()) {
+            categories.add(menu.category());
         }
         return categories;
     }
 
     public int provideDessertAmount() {
         int totalDessertAmount = 0;
-        for (Menus menu : orderedMenus.keySet()) {
+        for (MenusConstants menu : orderedMenus.keySet()) {
             if (menu.category().equals(DESSERT_CATEGORY_STRING)) {
                 totalDessertAmount += orderedMenus.get(menu);
             }
@@ -81,9 +81,9 @@ public class OrderedMenus {
 
     public int provideMainAmount() {
         int totalMainAmount = 0;
-        for (Menus menus : orderedMenus.keySet()) {
-            if (menus.category().equals(MAIN_CATEGORY_STRING)) {
-                totalMainAmount += orderedMenus.get(menus);
+        for (MenusConstants menu : orderedMenus.keySet()) {
+            if (menu.category().equals(MAIN_CATEGORY_STRING)) {
+                totalMainAmount += orderedMenus.get(menu);
             }
         }
         return totalMainAmount;
@@ -91,8 +91,8 @@ public class OrderedMenus {
 
     public List<String> provideOrderedMenus() {
         List<String> orderedMenusInfo = new ArrayList<>();
-        for (Map.Entry<Menus, Integer> orderedMenu : orderedMenus.entrySet()) {
-            String orderedMenuInfo = Menus.getNameByMenus(orderedMenu.getKey())+ " " + orderedMenu.getValue() + MENU_AMOUNT_UNIT;
+        for (Map.Entry<MenusConstants, Integer> orderedMenu : orderedMenus.entrySet()) {
+            String orderedMenuInfo = MenusConstants.getNameByMenus(orderedMenu.getKey())+ " " + orderedMenu.getValue() + MENU_AMOUNT_UNIT;
             orderedMenusInfo.add(orderedMenuInfo);
         }
         return orderedMenusInfo;

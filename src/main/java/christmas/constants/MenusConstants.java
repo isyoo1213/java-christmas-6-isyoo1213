@@ -1,6 +1,5 @@
 package christmas.constants;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
@@ -8,7 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public enum Menus {
+public enum MenusConstants {
     MUSHROOM_SOUP("양송이수프", 6000, "애피타이저"),
     TAPAS("타파스", 5500, "애피타이저"),
     CEASAR_SALAD("시저샐러드", 8000, "애피타이저"),
@@ -23,31 +22,31 @@ public enum Menus {
     CHAMPAGNE("샴페인", 25000, "음료"),
     UNCATEGORIZED("이름없음", 0, "미분류");
 
-    private static final Map<String, Menus> menuNames =
+    private static final Map<String, MenusConstants> menuNames =
             Collections.unmodifiableMap(Stream.of(values())
-                    .collect(Collectors.toMap(Menus::menuName, Function.identity())));
-    private static final Map<Menus, String> menuNamesByMenus =
+                    .collect(Collectors.toMap(MenusConstants::menuName, Function.identity())));
+    private static final Map<MenusConstants, String> menuNamesByMenus =
             Collections.unmodifiableMap(Stream.of(values())
-                    .collect(Collectors.toMap(Function.identity(), Menus::menuName)));
+                    .collect(Collectors.toMap(Function.identity(), MenusConstants::menuName)));
     private final String menuName;
     private final int price;
     private final String category;
 
-    Menus(String menuName, int price, String category) {
+    MenusConstants(String menuName, int price, String category) {
         this.menuName = menuName;
         this.price = price;
         this.category = category;
     }
 
-    public static Menus getMenusByName(String menuName) {
+    public static MenusConstants getMenusByName(String menuName) {
         return Optional.ofNullable(menuNames.get(menuName)).orElse(UNCATEGORIZED);
     }
 
-    public static String getNameByMenus(Menus menu) {
+    public static String getNameByMenus(MenusConstants menu) {
         return Optional.ofNullable(menuNamesByMenus.get(menu)).orElse(UNCATEGORIZED.menuName);
     }
 
-    public static int calculateEachMenuPrice(Menus menu, Integer amount) {
+    public static int calculateEachMenuPrice(MenusConstants menu, Integer amount) {
         return menu.price * amount;
     }
 

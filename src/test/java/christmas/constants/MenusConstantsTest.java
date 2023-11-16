@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class MenusTest {
+public class MenusConstantsTest {
 
     @DisplayName("메뉴 해당 여부 테스트 - 메뉴에 없는 데이터 - 오류")
     @ValueSource(strings = {"빼빼로", "갈비찜", "나시르막"})
@@ -15,7 +15,7 @@ public class MenusTest {
     void hasMenuWrongMenuTest(String input) {
         boolean testResult = false;
         boolean expectedResult = false;
-        for (Menus menu : Menus.values()) {
+        for (MenusConstants menu : MenusConstants.values()) {
             if (menu.hasMenu(input)) {
                 testResult =  true;
             }
@@ -29,7 +29,7 @@ public class MenusTest {
     void hasMenuCorrectMenuTest(String input) {
         boolean testResult = false;
         boolean expectedResult = true;
-        for (Menus menu : Menus.values()) {
+        for (MenusConstants menu : MenusConstants.values()) {
             if (menu.hasMenu(input)) {
                 testResult =  true;
             }
@@ -42,6 +42,6 @@ public class MenusTest {
     void calculateEachMenuPrice() {
         int testAmount = 5;
         int excpectedResult = 30000;
-        assertThat(Menus.calculateEachMenuPrice(Menus.MUSHROOM_SOUP, testAmount)).isEqualTo(excpectedResult);
+        assertThat(MenusConstants.calculateEachMenuPrice(MenusConstants.MUSHROOM_SOUP, testAmount)).isEqualTo(excpectedResult);
     }
 }
