@@ -63,17 +63,17 @@ public class OrderedMenus {
 
     public List<String> provideMenuCategories() {
         List<String> categories = new ArrayList<>();
-        for (MenusConstants menu : orderedMenus.keySet()) {
-            categories.add(menu.category());
+        for (MenusConstants menuConstant : orderedMenus.keySet()) {
+            categories.add(menuConstant.category());
         }
         return categories;
     }
 
     public int provideDessertAmount() {
         int totalDessertAmount = 0;
-        for (MenusConstants menu : orderedMenus.keySet()) {
-            if (menu.category().equals(DESSERT_CATEGORY_STRING)) {
-                totalDessertAmount += orderedMenus.get(menu);
+        for (MenusConstants menuConstant : orderedMenus.keySet()) {
+            if (menuConstant.category().equals(DESSERT_CATEGORY_STRING)) {
+                totalDessertAmount += orderedMenus.get(menuConstant);
             }
         }
         return totalDessertAmount;
@@ -81,9 +81,9 @@ public class OrderedMenus {
 
     public int provideMainAmount() {
         int totalMainAmount = 0;
-        for (MenusConstants menu : orderedMenus.keySet()) {
-            if (menu.category().equals(MAIN_CATEGORY_STRING)) {
-                totalMainAmount += orderedMenus.get(menu);
+        for (MenusConstants menuConstant : orderedMenus.keySet()) {
+            if (menuConstant.category().equals(MAIN_CATEGORY_STRING)) {
+                totalMainAmount += orderedMenus.get(menuConstant);
             }
         }
         return totalMainAmount;

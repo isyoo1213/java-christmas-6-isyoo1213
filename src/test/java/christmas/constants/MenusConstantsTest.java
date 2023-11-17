@@ -15,8 +15,8 @@ public class MenusConstantsTest {
     void hasMenuWrongMenuTest(String input) {
         boolean testResult = false;
         boolean expectedResult = false;
-        for (MenusConstants menu : MenusConstants.values()) {
-            if (menu.hasMenu(input)) {
+        for (MenusConstants menuConstant : MenusConstants.values()) {
+            if (menuConstant.hasMenu(input)) {
                 testResult =  true;
             }
         }
@@ -29,8 +29,8 @@ public class MenusConstantsTest {
     void hasMenuCorrectMenuTest(String input) {
         boolean testResult = false;
         boolean expectedResult = true;
-        for (MenusConstants menu : MenusConstants.values()) {
-            if (menu.hasMenu(input)) {
+        for (MenusConstants menuConstant : MenusConstants.values()) {
+            if (menuConstant.hasMenu(input)) {
                 testResult =  true;
             }
         }
@@ -41,7 +41,7 @@ public class MenusConstantsTest {
     @Test
     void calculateEachMenuPrice() {
         int testAmount = 5;
-        int excpectedResult = 30000;
-        assertThat(MenusConstants.calculateEachMenuPrice(MenusConstants.MUSHROOM_SOUP, testAmount)).isEqualTo(excpectedResult);
+        int expectedResult = 30000;
+        assertThat(MenusConstants.calculateEachMenuPrice(MenusConstants.MUSHROOM_SOUP, testAmount)).isEqualTo(expectedResult);
     }
 }

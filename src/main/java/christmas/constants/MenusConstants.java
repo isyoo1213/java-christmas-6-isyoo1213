@@ -42,12 +42,12 @@ public enum MenusConstants {
         return Optional.ofNullable(menuNames.get(menuName)).orElse(UNCATEGORIZED);
     }
 
-    public static String getNameByMenus(MenusConstants menu) {
-        return Optional.ofNullable(menuNamesByMenus.get(menu)).orElse(UNCATEGORIZED.menuName);
+    public static String getNameByMenus(MenusConstants menuConstant) {
+        return Optional.ofNullable(menuNamesByMenus.get(menuConstant)).orElse(UNCATEGORIZED.menuName);
     }
 
-    public static int calculateEachMenuPrice(MenusConstants menu, Integer amount) {
-        return menu.price * amount;
+    public static int calculateEachMenuPrice(MenusConstants menuConstant, Integer amount) {
+        return menuConstant.price * amount;
     }
 
     public boolean hasMenu(String menuName) {
