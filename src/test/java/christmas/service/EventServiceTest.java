@@ -3,7 +3,7 @@ package christmas.service;
 import christmas.constants.Badges;
 import christmas.constants.Events;
 import christmas.model.Date;
-import christmas.model.OrderedMenus;
+import christmas.model.Menus;
 import christmas.model.Order;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ import static christmas.service.EventService.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class EventServiceTest {
-    private static OrderedMenus defaultOrderedMenus;
+    private static Menus defaultMenus;
     private static Date defaultDate;
     private static final Map<Events, Integer> defaultEventsResult = new HashMap<>();
     EventService eventService = new EventService();
@@ -26,7 +26,7 @@ public class EventServiceTest {
         Map<String, Integer> defaultOrderedMenus = new HashMap<>();
         defaultOrderedMenus.put("타파스", 1);
         defaultOrderedMenus.put("제로콜라", 1);
-        EventServiceTest.defaultOrderedMenus =  new OrderedMenus(defaultOrderedMenus);
+        EventServiceTest.defaultMenus =  new Menus(defaultOrderedMenus);
         defaultDate = new Date(26);
     }
 
@@ -46,7 +46,7 @@ public class EventServiceTest {
         Map<String, Integer> testMenus = new HashMap<>();
         testMenus.put("타파스", 2);
         testMenus.put("제로콜라", 1);
-        List<String> expectedResult = new OrderedMenus(testMenus).provideOrderedMenus();
+        List<String> expectedResult = new Menus(testMenus).provideOrderedMenus();
 
         assertThat(eventService.saveOrderedMenu(testMenus).provideOrderedMenus())
                 .isEqualTo(expectedResult);
@@ -55,13 +55,13 @@ public class EventServiceTest {
     @DisplayName("주문 저장 테스트 - 정상 데이터 - 성공")
     @Test
     void saveOrderTest() {
-        Order resultOrder = new Order(defaultDate, defaultOrderedMenus, defaultEventsResult);
+        Order resultOrder = new Order(defaultDate, defaultMenus, defaultEventsResult);
 
-        assertThat(eventService.saveOrder(defaultDate, defaultOrderedMenus, defaultEventsResult).provideVisitingDateInfo())
+        assertThat(eventService.saveOrder(defaultDate, defaultMenus, defaultEventsResult).provideVisitingDateInfo())
                 .isEqualTo(resultOrder.provideVisitingDateInfo());
-        assertThat(eventService.saveOrder(defaultDate, defaultOrderedMenus, defaultEventsResult).provideOrderedMenusInfo())
+        assertThat(eventService.saveOrder(defaultDate, defaultMenus, defaultEventsResult).provideOrderedMenusInfo())
                 .isEqualTo(resultOrder.provideOrderedMenusInfo());
-        assertThat(eventService.saveOrder(defaultDate, defaultOrderedMenus, defaultEventsResult).provideEventsResultInfo())
+        assertThat(eventService.saveOrder(defaultDate, defaultMenus, defaultEventsResult).provideEventsResultInfo())
                 .isEqualTo(resultOrder.provideEventsResultInfo());
     }
 
@@ -70,7 +70,7 @@ public class EventServiceTest {
     void calculateEventsTest() {
         Map<Events, Integer> resultEventsResult = new LinkedHashMap<>();
 
-        assertThat(eventService.calculateEvents(defaultDate, defaultOrderedMenus))
+        assertThat(eventService.calculateEvents(defaultDate, defaultMenus))
                 .isEqualTo(resultEventsResult);
     }
 

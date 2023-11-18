@@ -2,7 +2,7 @@ package christmas.utils;
 
 import christmas.constants.Events;
 import christmas.model.Date;
-import christmas.model.OrderedMenus;
+import christmas.model.Menus;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ public class EventCalculatorTest {
     @DisplayName("이벤트 참여 가능 여부 테스트 - 최소 주문 금액 이하 데이터 - 성공")
     @Test
     void isParticipateUnderMinimumTotalPriceTest() {
-        OrderedMenus testMenus = new OrderedMenus(testMenuOrder);
+        Menus testMenus = new Menus(testMenuOrder);
         boolean expectedResult = false;
         assertThat(eventCalculator.isParticipate(testMenus)).isEqualTo(expectedResult);
     }
@@ -36,7 +36,7 @@ public class EventCalculatorTest {
     void isParticipateOnlyBeverageCategoryTest() {
         Map<String, Integer> testMenuOrder = new HashMap<>();
         testMenuOrder.put("제로콜라", 10);
-        OrderedMenus testMenus = new OrderedMenus(testMenuOrder);
+        Menus testMenus = new Menus(testMenuOrder);
         boolean expectedResult = false;
         assertThat(eventCalculator.isParticipate(testMenus)).isEqualTo(expectedResult);
     }
@@ -48,7 +48,7 @@ public class EventCalculatorTest {
         testMenuOrder.put("타파스", 2);
         testMenuOrder.put("양송이수프", 2);
         testMenuOrder.put("초코케이크", 3);
-        OrderedMenus testMenus = new OrderedMenus(testMenuOrder);
+        Menus testMenus = new Menus(testMenuOrder);
         Date testDate = new Date(25);
 
         Map<Events, Integer> expectedResult = new LinkedHashMap<>();
@@ -65,7 +65,7 @@ public class EventCalculatorTest {
         testMenuOrder.put("타파스", 2);
         testMenuOrder.put("양송이수프", 2);
         testMenuOrder.put("초코케이크", 3);
-        OrderedMenus testMenus = new OrderedMenus(testMenuOrder);
+        Menus testMenus = new Menus(testMenuOrder);
         Date testDate = new Date(26);
 
         Map<Events, Integer> expectedResult = new LinkedHashMap<>();
@@ -80,7 +80,7 @@ public class EventCalculatorTest {
         testMenuOrder.put("타파스", 2);
         testMenuOrder.put("양송이수프", 2);
         testMenuOrder.put("초코케이크", 3);
-        OrderedMenus testMenus = new OrderedMenus(testMenuOrder);
+        Menus testMenus = new Menus(testMenuOrder);
         Date testDate = new Date(18);
 
         Map<Events, Integer> expectedResult = new LinkedHashMap<>();
@@ -97,7 +97,7 @@ public class EventCalculatorTest {
         testMenuOrder.put("양송이수프", 2);
         testMenuOrder.put("초코케이크", 3);
         testMenuOrder.put("티본스테이크", 10);
-        OrderedMenus testMenus = new OrderedMenus(testMenuOrder);
+        Menus testMenus = new Menus(testMenuOrder);
         Date testDate = new Date(18);
 
         Map<Events, Integer> expectedResult = new LinkedHashMap<>();

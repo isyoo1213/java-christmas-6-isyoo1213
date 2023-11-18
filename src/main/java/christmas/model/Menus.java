@@ -7,10 +7,10 @@ import java.util.*;
 
 import static christmas.constants.EventConstants.*;
 
-public class OrderedMenus {
+public class Menus {
     private final Map<MenusConstants, Integer> orderedMenus;
 
-    public OrderedMenus(Map<String, Integer> convertedOrderedMenus) {
+    public Menus(Map<String, Integer> convertedOrderedMenus) {
         validate(convertedOrderedMenus);
         Map<MenusConstants, Integer> orderedMenus = new LinkedHashMap<>();
         for (Map.Entry<String, Integer> convertedOrderedMenu : convertedOrderedMenus.entrySet()) {

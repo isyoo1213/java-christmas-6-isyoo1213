@@ -2,7 +2,7 @@ package christmas.controller;
 
 import christmas.constants.Events;
 import christmas.model.Date;
-import christmas.model.OrderedMenus;
+import christmas.model.Menus;
 import christmas.model.Order;
 import christmas.service.EventService;
 import christmas.utils.InputValidator;
@@ -27,8 +27,8 @@ public class EventController {
         outputView.printWelcomeMessage();
 
         Date visitingDate = saveVisitingDate();
-        OrderedMenus orderedMenus = saveOrderedMenus();
-        Order order = applyEvents(visitingDate, orderedMenus);
+        Menus menus = saveOrderedMenus();
+        Order order = applyEvents(visitingDate, menus);
         printEventResult(order);
     }
 
@@ -43,24 +43,24 @@ public class EventController {
         }
     }
 
-    private OrderedMenus saveOrderedMenus() {
+    private Menus saveOrderedMenus() {
         try {
             String preprocessedOrderedMenus = inputValidator.preprocessInput(inputView.askMenuOrdering());
             Map<String, Integer> convertedOrderedMenus = inputValidator.convertInputToMenuOrder(preprocessedOrderedMenus);
-            OrderedMenus orderedMenus = eventService.saveOrderedMenu(convertedOrderedMenus);
-            amounts.put(ORDERED_MENU_TOTAL_PRICE, orderedMenus.provideTotalPrice());
-            return orderedMenus;
+            Menus menus = eventService.saveOrderedMenu(convertedOrderedMenus);
+            amounts.put(ORDERED_MENU_TOTAL_PRICE, menus.provideTotalPrice());
+            return menus;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return saveOrderedMenus();
         }
     }
 
-    private Order applyEvents(Date visitingDate, OrderedMenus orderedMenus) {
-        eventsResult.putAll(eventService.calculateEvents(visitingDate, orderedMenus));
+    private Order applyEvents(Date visitingDate, Menus menus) {
+        eventsResult.putAll(eventService.calculateEvents(visitingDate, menus));
         amounts.put(TOTAL_BENEFITS_AMOUNT, eventService.calculateTotalBenefitsAmount(eventsResult));
         amounts.put(DISCOUNTED_TOTAL_PRICE, eventService.calculateDiscountedTotalAmount(amounts, eventsResult));
-        return eventService.saveOrder(visitingDate, orderedMenus, eventsResult);
+        return eventService.saveOrder(visitingDate, menus, eventsResult);
     }
 
     private void printEventResult(Order order) {

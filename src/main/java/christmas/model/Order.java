@@ -10,11 +10,11 @@ import static christmas.constants.EventConstants.*;
 public class Order {
     private final Map<String, List<String>> orderInfo;
 
-    public Order(Date date, OrderedMenus orderedMenus, Map<Events, Integer> eventsResult) {
+    public Order(Date date, Menus menus, Map<Events, Integer> eventsResult) {
         Map<String, List<String>> orderInfo = new HashMap<>();
         List<String> dateInfo = date.provideDateInfo();
-        List<String> orderedMenusInfo = List.copyOf(orderedMenus.provideOrderedMenus());
-        List<String> orderedMenusTotalPrice = List.of(new DecimalFormat(PRICE_PATTERN).format(orderedMenus.provideTotalPrice()));
+        List<String> orderedMenusInfo = List.copyOf(menus.provideOrderedMenus());
+        List<String> orderedMenusTotalPrice = List.of(new DecimalFormat(PRICE_PATTERN).format(menus.provideTotalPrice()));
         List<String> eventsResultInfo = calculateEventsResultInfo(eventsResult);
         orderInfo.put(VISITING_DATE, dateInfo);
         orderInfo.put(ORDERED_MENUS, orderedMenusInfo);

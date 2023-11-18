@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 public class OrderTest {
-    private static OrderedMenus defaultOrderedMenus;
+    private static Menus defaultMenus;
     private static Date defaultDate;
     private static Map<Events, Integer> defaultEventsResult = new LinkedHashMap<>();
 
@@ -18,14 +18,14 @@ public class OrderTest {
         Map<String, Integer> defaultOrderedMenus = new LinkedHashMap<>();
         defaultOrderedMenus.put("타파스", 1);
         defaultOrderedMenus.put("제로콜라", 1);
-        OrderTest.defaultOrderedMenus =  new OrderedMenus(defaultOrderedMenus);
+        OrderTest.defaultMenus =  new Menus(defaultOrderedMenus);
         defaultDate = new Date(26);
     }
 
     @DisplayName("방문 날짜 반환 테스트 - 정상 데이터 - 성공")
     @Test
     void provideVisitingDateInfoTest() {
-        Order testOrder = new Order(defaultDate, defaultOrderedMenus, defaultEventsResult);
+        Order testOrder = new Order(defaultDate, defaultMenus, defaultEventsResult);
         List<String> expectedResult = Arrays.asList("WEEKDAY", "26");
         Assertions.assertThat(testOrder.provideVisitingDateInfo()).isEqualTo(expectedResult);
     }
@@ -33,7 +33,7 @@ public class OrderTest {
     @DisplayName("메뉴 주문 내역 반환 테스트 - 정상 데이터 - 성공")
     @Test
     void provideOrderedMenusInfoTest() {
-        Order testOrder = new Order(defaultDate, defaultOrderedMenus, defaultEventsResult);
+        Order testOrder = new Order(defaultDate, defaultMenus, defaultEventsResult);
         List<String> expectedResult = Arrays.asList("타파스 1개", "제로콜라 1개");
         Assertions.assertThat(testOrder.provideOrderedMenusInfo()).containsAll(expectedResult);
     }
@@ -41,7 +41,7 @@ public class OrderTest {
     @DisplayName("할인 전 총주문 금액 반환 테스트 - 정상 데이터 - 성공")
     @Test
     void provideOrderedMenusTotalPriceInfoTest() {
-        Order testOrder = new Order(defaultDate, defaultOrderedMenus, defaultEventsResult);
+        Order testOrder = new Order(defaultDate, defaultMenus, defaultEventsResult);
         List<String> expectedResult = Arrays.asList("8,500");
         Assertions.assertThat(testOrder.provideOrderedMenusTotalPriceInfo()).isEqualTo(expectedResult);
     }
@@ -54,7 +54,7 @@ public class OrderTest {
         testOrderedMenus.put("티본스테이크", 2);
         testOrderedMenus.put("초코케이크", 2);
         testOrderedMenus.put("샴페인", 3);
-        OrderedMenus testMenu = new OrderedMenus(testOrderedMenus);
+        Menus testMenu = new Menus(testOrderedMenus);
         Map<Events, Integer> testEventsResult = new LinkedHashMap<>();
         testEventsResult.put(Events.CHRISTMAS_DDAY_DISCOUNT, 3400);
         testEventsResult.put(Events.WEEKDAY_DISCOUNT, 4046);
