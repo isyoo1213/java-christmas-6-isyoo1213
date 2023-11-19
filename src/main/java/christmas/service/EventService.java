@@ -30,8 +30,8 @@ public class EventService {
         return new Date(convertedDate);
     }
 
-    public Menus saveOrderedMenu(Map<String, Integer> convertedOrderedMenu) {
-        return new Menus(convertedOrderedMenu);
+    public Menus saveMenus(Map<String, Integer> convertedMenus) {
+        return new Menus(convertedMenus);
     }
 
     public Map<Events, Integer> calculateEvents(Date visitingDate, Menus menus) {

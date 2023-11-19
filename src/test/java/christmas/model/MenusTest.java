@@ -55,7 +55,7 @@ public class MenusTest {
         expectedResult += MenusConstants.calculateEachMenuPrice(MenusConstants.MUSHROOM_SOUP, 1);
         expectedResult += MenusConstants.calculateEachMenuPrice(MenusConstants.TBONE_STEAK, 3);
 
-        assertThat(testMenus.provideTotalPrice()).isEqualTo(expectedResult);
+        assertThat(testMenus.provideMenusTotalPrice()).isEqualTo(expectedResult);
     }
 
     @DisplayName("디저트 카테고리 수량 반환 테스트 - 정상 데이터 - 성공")
@@ -96,6 +96,6 @@ public class MenusTest {
         Menus testMenus = new Menus(testOrderedMenus);
         List<String> expectedResult = Arrays.asList("타파스 3개", "양송이수프 2개", "티본스테이크 4개");
 
-        assertThat(testMenus.provideOrderedMenus()).containsAll(expectedResult);
+        assertThat(testMenus.provideMenusInfo()).containsAll(expectedResult);
     }
 }

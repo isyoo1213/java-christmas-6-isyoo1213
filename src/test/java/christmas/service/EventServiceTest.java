@@ -46,9 +46,9 @@ public class EventServiceTest {
         Map<String, Integer> testMenus = new HashMap<>();
         testMenus.put("타파스", 2);
         testMenus.put("제로콜라", 1);
-        List<String> expectedResult = new Menus(testMenus).provideOrderedMenus();
+        List<String> expectedResult = new Menus(testMenus).provideMenusInfo();
 
-        assertThat(eventService.saveOrderedMenu(testMenus).provideOrderedMenus())
+        assertThat(eventService.saveMenus(testMenus).provideMenusInfo())
                 .isEqualTo(expectedResult);
     }
 

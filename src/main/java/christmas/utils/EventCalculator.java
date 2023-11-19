@@ -20,7 +20,7 @@ public class EventCalculator {
     private final Integer SPECIALDAY_DISCOUNT_AMOUNT = 1000;
 
     public boolean isParticipate(Menus menus) {
-        int totalPrice = menus.provideTotalPrice();
+        int totalPrice = menus.provideMenusTotalPrice();
         if (isUnderMinimumAmount(totalPrice) || isOnlyBeverage(menus)) {
             return false;
         }
@@ -28,7 +28,7 @@ public class EventCalculator {
     }
 
     private boolean isOnlyBeverage(Menus menus) {
-        List<String> categories = menus.provideMenuCategories();
+        List<String> categories = menus.provideMenusCategories();
         categories.remove(BEVERAGE_CATEGORY_STRING);
         return categories.size() == 0;
     }
@@ -45,7 +45,7 @@ public class EventCalculator {
     }
 
     private void calculateGiftPresentation(Menus menus, Map<Events, Integer> availableEvents) {
-        if (menus.provideTotalPrice() >= GIFT_PRESENTATION_EVENT_AMOUNT) {
+        if (menus.provideMenusTotalPrice() >= GIFT_PRESENTATION_EVENT_AMOUNT) {
             availableEvents.put(Events.GIFT_PRESENTATION, GIFT_PRESENTATION_BENEFIT);
         }
     }
