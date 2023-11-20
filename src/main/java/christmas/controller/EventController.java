@@ -27,7 +27,7 @@ public class EventController {
         outputView.printWelcomeMessage();
 
         Date visitingDate = saveVisitingDate();
-        Menus menus = saveMenus();
+        Menus menus = saveOrderedMenus();
         Order order = applyEvents(visitingDate, menus);
         printEventResult(order);
     }
@@ -36,14 +36,14 @@ public class EventController {
         try {
             String preprocessedDate = inputValidator.preprocessInput(inputView.askVisitingDate());
             Integer convertedDate = inputValidator.convertInputToDate(preprocessedDate);
-            return eventService.saveVisitingDate(convertedDate);
+            return eventService.saveDate(convertedDate);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return saveVisitingDate();
         }
     }
 
-    private Menus saveMenus() {
+    private Menus saveOrderedMenus() {
         try {
             String preprocessedMenus = inputValidator.preprocessInput(inputView.askMenuOrdering());
             Map<String, Integer> convertedMenus = inputValidator.convertInputToMenuOrder(preprocessedMenus);
@@ -52,15 +52,15 @@ public class EventController {
             return menus;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return saveMenus();
+            return saveOrderedMenus();
         }
     }
 
-    private Order applyEvents(Date visitingDate, Menus menus) {
-        eventsResult.putAll(eventService.calculateEvents(visitingDate, menus));
+    private Order applyEvents(Date date, Menus menus) {
+        eventsResult.putAll(eventService.calculateEvents(date, menus));
         amounts.put(TOTAL_BENEFITS_AMOUNT, eventService.calculateTotalBenefitsAmount(eventsResult));
         amounts.put(DISCOUNTED_TOTAL_PRICE, eventService.calculateDiscountedTotalAmount(amounts, eventsResult));
-        return eventService.saveOrder(visitingDate, menus, eventsResult);
+        return eventService.saveOrder(date, menus, eventsResult);
     }
 
     private void printEventResult(Order order) {
@@ -72,13 +72,13 @@ public class EventController {
     }
 
     private void printVisitingPreview(Order order) {
-        int DateIndex = order.provideVisitingDateInfo().size() - 1;
-        int visitingDate = Integer.parseInt(order.provideVisitingDateInfo().get(DateIndex));
+        int dateIndex = order.provideDateInfo().size() - 1;
+        int visitingDate = Integer.parseInt(order.provideDateInfo().get(dateIndex));
         outputView.printEventPreviewMessage(visitingDate);
     }
 
     private void printUserMenusInfo(Order order) {
-        List<String> orderedMenusInfo = order.provideOrderedMenusInfo();
+        List<String> orderedMenusInfo = order.provideMenusInfo();
         int menusTotalPrice = amounts.get(ORDERED_MENU_TOTAL_PRICE);
         outputView.printUserMenusInfo(orderedMenusInfo, menusTotalPrice);
     }

@@ -13,12 +13,12 @@ public class Order {
     public Order(Date date, Menus menus, Map<Events, Integer> eventsResult) {
         Map<String, List<String>> orderInfo = new HashMap<>();
         List<String> dateInfo = date.provideDateInfo();
-        List<String> orderedMenusInfo = List.copyOf(menus.provideMenusInfo());
-        List<String> orderedMenusTotalPrice = List.of(new DecimalFormat(PRICE_PATTERN).format(menus.provideMenusTotalPrice()));
+        List<String> menusInfo = List.copyOf(menus.provideMenusInfo());
+        List<String> menusTotalPrice = List.of(new DecimalFormat(PRICE_PATTERN).format(menus.provideMenusTotalPrice()));
         List<String> eventsResultInfo = calculateEventsResultInfo(eventsResult);
         orderInfo.put(VISITING_DATE, dateInfo);
-        orderInfo.put(ORDERED_MENUS, orderedMenusInfo);
-        orderInfo.put(ORDERED_MENU_TOTAL_PRICE, orderedMenusTotalPrice);
+        orderInfo.put(ORDERED_MENUS, menusInfo);
+        orderInfo.put(ORDERED_MENU_TOTAL_PRICE, menusTotalPrice);
         orderInfo.put(APPLIED_BENEFITS, eventsResultInfo);
 
         this.orderInfo = Map.copyOf(orderInfo);
@@ -37,15 +37,15 @@ public class Order {
         return eventsResultInfo;
     }
 
-    public List<String> provideVisitingDateInfo() {
+    public List<String> provideDateInfo() {
         return orderInfo.get(VISITING_DATE);
     }
 
-    public List<String> provideOrderedMenusInfo() {
+    public List<String> provideMenusInfo() {
         return orderInfo.get(ORDERED_MENUS);
     }
 
-    public List<String> provideOrderedMenusTotalPriceInfo() {
+    public List<String> provideMenusTotalPriceInfo() {
         return orderInfo.get(ORDERED_MENU_TOTAL_PRICE);
     }
 

@@ -36,7 +36,7 @@ public class EventServiceTest {
         int testDate = 25;
         List<String> expectedResult = new Date(25).provideDateInfo();
 
-        assertThat(eventService.saveVisitingDate(testDate).provideDateInfo()).
+        assertThat(eventService.saveDate(testDate).provideDateInfo()).
                 isEqualTo(expectedResult);
     }
 
@@ -57,10 +57,10 @@ public class EventServiceTest {
     void saveOrderTest() {
         Order resultOrder = new Order(defaultDate, defaultMenus, defaultEventsResult);
 
-        assertThat(eventService.saveOrder(defaultDate, defaultMenus, defaultEventsResult).provideVisitingDateInfo())
-                .isEqualTo(resultOrder.provideVisitingDateInfo());
-        assertThat(eventService.saveOrder(defaultDate, defaultMenus, defaultEventsResult).provideOrderedMenusInfo())
-                .isEqualTo(resultOrder.provideOrderedMenusInfo());
+        assertThat(eventService.saveOrder(defaultDate, defaultMenus, defaultEventsResult).provideDateInfo())
+                .isEqualTo(resultOrder.provideDateInfo());
+        assertThat(eventService.saveOrder(defaultDate, defaultMenus, defaultEventsResult).provideMenusInfo())
+                .isEqualTo(resultOrder.provideMenusInfo());
         assertThat(eventService.saveOrder(defaultDate, defaultMenus, defaultEventsResult).provideEventsResultInfo())
                 .isEqualTo(resultOrder.provideEventsResultInfo());
     }

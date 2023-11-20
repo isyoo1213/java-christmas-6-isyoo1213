@@ -22,11 +22,11 @@ public class EventService {
 
     EventCalculator eventCalculator = new EventCalculator();
 
-    public Order saveOrder(Date visitingDate, Menus menus, Map<Events, Integer> eventResult) {
-        return new Order(visitingDate, menus, eventResult);
+    public Order saveOrder(Date date, Menus menus, Map<Events, Integer> eventResult) {
+        return new Order(date, menus, eventResult);
     }
 
-    public Date saveVisitingDate(Integer convertedDate) {
+    public Date saveDate(Integer convertedDate) {
         return new Date(convertedDate);
     }
 
@@ -34,11 +34,11 @@ public class EventService {
         return new Menus(convertedMenus);
     }
 
-    public Map<Events, Integer> calculateEvents(Date visitingDate, Menus menus) {
+    public Map<Events, Integer> calculateEvents(Date date, Menus menus) {
         if (!eventCalculator.isParticipate(menus)) {
             return new HashMap<>();
         }
-        return eventCalculator.calculateEvents(menus, visitingDate);
+        return eventCalculator.calculateEvents(menus, date);
     }
 
     public String calculateGiftPresentationMenu(List<String> eventsResult) {

@@ -27,7 +27,7 @@ public class OrderTest {
     void provideVisitingDateInfoTest() {
         Order testOrder = new Order(defaultDate, defaultMenus, defaultEventsResult);
         List<String> expectedResult = Arrays.asList("WEEKDAY", "26");
-        Assertions.assertThat(testOrder.provideVisitingDateInfo()).isEqualTo(expectedResult);
+        Assertions.assertThat(testOrder.provideDateInfo()).isEqualTo(expectedResult);
     }
 
     @DisplayName("메뉴 주문 내역 반환 테스트 - 정상 데이터 - 성공")
@@ -35,7 +35,7 @@ public class OrderTest {
     void provideOrderedMenusInfoTest() {
         Order testOrder = new Order(defaultDate, defaultMenus, defaultEventsResult);
         List<String> expectedResult = Arrays.asList("타파스 1개", "제로콜라 1개");
-        Assertions.assertThat(testOrder.provideOrderedMenusInfo()).containsAll(expectedResult);
+        Assertions.assertThat(testOrder.provideMenusInfo()).containsAll(expectedResult);
     }
 
     @DisplayName("할인 전 총주문 금액 반환 테스트 - 정상 데이터 - 성공")
@@ -43,7 +43,7 @@ public class OrderTest {
     void provideOrderedMenusTotalPriceInfoTest() {
         Order testOrder = new Order(defaultDate, defaultMenus, defaultEventsResult);
         List<String> expectedResult = Arrays.asList("8,500");
-        Assertions.assertThat(testOrder.provideOrderedMenusTotalPriceInfo()).isEqualTo(expectedResult);
+        Assertions.assertThat(testOrder.provideMenusTotalPriceInfo()).isEqualTo(expectedResult);
     }
 
     @DisplayName("이벤트 적용 결과 반환 테스트 - 정상 데이터 - 성공")
