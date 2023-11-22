@@ -24,7 +24,7 @@ public class Date {
     }
 
     public boolean isFirstToXmas() {
-        return date >= 1 && date <= 25;
+        return date >= START_DAY_OF_MONTH && date <= CHRISTMAS_DATE;
     }
 
     public int calculateDaysFromStartDayOfMonth() {

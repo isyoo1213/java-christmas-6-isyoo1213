@@ -3,6 +3,8 @@ package christmas.constants;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static christmas.constants.EventConstants.CHRISTMAS_DATE;
+
 public enum Days {
     WEEKDAY("평일", Arrays.asList(0, 3, 4, 5, 6)),
     WEEKEND("주말", Arrays.asList(1, 2)),
@@ -10,7 +12,7 @@ public enum Days {
     UNCATEGORIZED("미분류", List.of());
 
     private static final Integer DAYS_OF_WEEK = 7;
-    private static final Integer CHRISTMAS_DATE = 25;
+
     private final String category;
     private final List<Integer> dividedDays;
 
