@@ -97,7 +97,7 @@ public class EventController {
     }
 
     private void printEventBadgeStatus() {
-        String badge = eventService.calculateBadge(amounts.get(TOTAL_BENEFITS_AMOUNT) * -1);
+        String badge = eventService.calculateBadge(-(amounts.get(TOTAL_BENEFITS_AMOUNT)));
         outputView.printEventBadgeStatus(badge);
     }
 }
